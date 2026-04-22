@@ -36,4 +36,3 @@ python -m http.server 8000
 
 ## Layering
 The preview is built by stacking images in `dress-up-game/app.js` inside `renderLayerStack()`.
-
