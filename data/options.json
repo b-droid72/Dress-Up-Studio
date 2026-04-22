@@ -1,0 +1,141 @@
+{
+  "character": {
+    "tabs": [
+      {
+        "id": "skinTone",
+        "label": "Skin",
+        "type": "color",
+        "default": "tone1",
+        "options": [
+          { "id": "tone1", "label": "Tone 1", "color": "#f2d7c1" },
+          { "id": "tone2", "label": "Tone 2", "color": "#d7ad8b" },
+          { "id": "tone3", "label": "Tone 3", "color": "#a77658" }
+        ]
+      },
+      {
+        "id": "eyes",
+        "label": "Eyes",
+        "type": "image",
+        "default": "eyes1",
+        "options": [
+          { "id": "eyes1", "label": "Style 1", "src": "./assets/face/eyes_style1.svg" },
+          { "id": "eyes2", "label": "Style 2", "src": "./assets/face/eyes_style2.svg" },
+          { "id": "eyes3", "label": "Style 3", "src": "./assets/face/eyes_style3.svg" }
+        ]
+      },
+      {
+        "id": "eyeColor",
+        "label": "Eye color",
+        "type": "color",
+        "default": "blue",
+        "options": [
+          { "id": "blue", "label": "Blue", "color": "#2a90ff" },
+          { "id": "green", "label": "Green", "color": "#2fbf71" },
+          { "id": "brown", "label": "Brown", "color": "#8b5a2b" },
+          { "id": "gray", "label": "Gray", "color": "#6f7c8a" }
+        ]
+      },
+      {
+        "id": "mouth",
+        "label": "Mouth",
+        "type": "image",
+        "default": "mouth1",
+        "options": [
+          { "id": "mouth1", "label": "Smile", "src": "./assets/face/mouth_smile.svg" },
+          { "id": "mouth2", "label": "Neutral", "src": "./assets/face/mouth_neutral.svg" },
+          { "id": "mouth3", "label": "Grin", "src": "./assets/face/mouth_grin.svg" }
+        ]
+      },
+      {
+        "id": "hair",
+        "label": "Hair",
+        "type": "image",
+        "default": "hair1",
+        "options": [
+          { "id": "hair1", "label": "Short", "src": "./assets/hair/hair_short.svg" },
+          { "id": "hair2", "label": "Long", "src": "./assets/hair/hair_long.svg" },
+          { "id": "hair3", "label": "Bun", "src": "./assets/hair/hair_bun.svg" },
+          { "id": "hair4", "label": "Ponytail", "src": "./assets/hair/hair_pony.svg" }
+        ]
+      },
+      {
+        "id": "hairColor",
+        "label": "Hair color",
+        "type": "color",
+        "default": "brown",
+        "options": [
+          { "id": "black", "label": "Black", "color": "#1f2328" },
+          { "id": "brown", "label": "Brown", "color": "#5b3a22" },
+          { "id": "blonde", "label": "Blonde", "color": "#d9b25f" },
+          { "id": "pink", "label": "Pink", "color": "#ff6fb3" }
+        ]
+      }
+    ]
+  },
+  "dressup": {
+    "tabs": [
+      {
+        "id": "shirt",
+        "label": "Shirts",
+        "type": "imageOrNone",
+        "default": "shirt1",
+        "options": [
+          { "id": "none", "label": "None", "src": null },
+          { "id": "shirt1", "label": "Blue Tee", "src": "./assets/clothes/shirts/shirt_blue.svg" },
+          { "id": "shirt2", "label": "Pink Top", "src": "./assets/clothes/shirts/shirt_pink.svg" },
+          { "id": "shirt3", "label": "Green Hoodie", "src": "./assets/clothes/shirts/shirt_green.svg" },
+          { "id": "shirt4", "label": "White Blouse", "src": "./assets/clothes/shirts/shirt_white.svg" }
+        ]
+      },
+      {
+        "id": "skirt",
+        "label": "Skirts",
+        "type": "imageOrNone",
+        "default": "skirt1",
+        "options": [
+          { "id": "none", "label": "None", "src": null },
+          { "id": "skirt1", "label": "Pleated", "src": "./assets/clothes/skirts/skirt_pleated.svg" },
+          { "id": "skirt2", "label": "Pencil", "src": "./assets/clothes/skirts/skirt_pencil.svg" },
+          { "id": "skirt3", "label": "Flare", "src": "./assets/clothes/skirts/skirt_flare.svg" }
+        ]
+      },
+      {
+        "id": "pants",
+        "label": "Pants",
+        "type": "imageOrNone",
+        "default": "none",
+        "options": [
+          { "id": "none", "label": "None", "src": null },
+          { "id": "pants1", "label": "Jeans", "src": "./assets/clothes/pants/pants_jeans.svg" },
+          { "id": "pants2", "label": "Leggings", "src": "./assets/clothes/pants/pants_leggings.svg" },
+          { "id": "pants3", "label": "Wide", "src": "./assets/clothes/pants/pants_wide.svg" }
+        ]
+      },
+      {
+        "id": "shoes",
+        "label": "Shoes",
+        "type": "imageOrNone",
+        "default": "shoes1",
+        "options": [
+          { "id": "none", "label": "None", "src": null },
+          { "id": "shoes1", "label": "Sneakers", "src": "./assets/clothes/shoes/shoes_sneakers.svg" },
+          { "id": "shoes2", "label": "Heels", "src": "./assets/clothes/shoes/shoes_heels.svg" },
+          { "id": "shoes3", "label": "Boots", "src": "./assets/clothes/shoes/shoes_boots.svg" }
+        ]
+      },
+      {
+        "id": "accessory",
+        "label": "Accessories",
+        "type": "imageOrNone",
+        "default": "acc1",
+        "options": [
+          { "id": "none", "label": "None", "src": null },
+          { "id": "acc1", "label": "Necklace", "src": "./assets/accessories/necklace.svg" },
+          { "id": "acc2", "label": "Glasses", "src": "./assets/accessories/glasses.svg" },
+          { "id": "acc3", "label": "Hat", "src": "./assets/accessories/hat.svg" }
+        ]
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dress-Up Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app" id="appRoot">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brandMark" aria-hidden="true"></div>
+          <div>
+            <div class="brandTitle">Dress-Up Studio</div>
+            <div class="brandSubtitle">Customize your character, then style an outfit.</div>
+          </div>
+        </div>
+        <div class="topbarActions">
+          <button class="btn ghost" id="homeBtn" type="button">Home</button>
+        </div>
+      </header>
+
+      <section class="screen" data-screen="start">
+        <div class="card hero">
+          <h1>Welcome</h1>
+          <p class="muted">
+            Start by customizing facial features and colors, then move on to clothes.
+          </p>
+          <div class="heroActions">
+            <button class="btn primary" id="playBtn" type="button">Play</button>
+            <button class="btn" id="settingsBtn" type="button">Settings</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen hidden" data-screen="settings">
+        <div class="card">
+          <div class="row">
+            <h2>Settings</h2>
+            <button class="btn ghost" id="settingsBackBtn" type="button">Back</button>
+          </div>
+
+          <div class="grid2">
+            <div class="setting">
+              <div class="settingTitle">Music</div>
+              <button class="btn pill" id="toggleMusicBtn" type="button" aria-pressed="false">
+                Off
+              </button>
+            </div>
+            <div class="setting">
+              <div class="settingTitle">Sound</div>
+              <button class="btn pill" id="toggleSoundBtn" type="button" aria-pressed="false">
+                Off
+              </button>
+            </div>
+          </div>
+          <p class="muted small">
+            These toggles are placeholders for the MVP. They don’t affect sound yet.
+          </p>
+        </div>
+      </section>
+
+      <section class="screen hidden" data-screen="character">
+        <div class="layout">
+          <div class="previewPanel card">
+            <div class="row">
+              <h2>Character</h2>
+              <div class="row">
+                <button class="btn ghost" id="characterResetBtn" type="button">Reset</button>
+              </div>
+            </div>
+
+            <div class="previewFrame" role="img" aria-label="Character preview">
+              <div class="layerStack" id="previewStack"></div>
+            </div>
+          </div>
+
+          <div class="controlsPanel card">
+            <div class="row">
+              <h3>Customization</h3>
+              <div class="row">
+                <button class="btn ghost" id="characterBackBtn" type="button">Back</button>
+                <button class="btn primary" id="toDressupBtn" type="button">Next</button>
+              </div>
+            </div>
+
+            <div class="categoryTabs" id="characterCategoryTabs"></div>
+            <div class="categoryContent" id="characterCategoryContent"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen hidden" data-screen="dressup">
+        <div class="layout">
+          <div class="previewPanel card">
+            <div class="row">
+              <h2>Dress Up</h2>
+              <div class="row">
+                <button class="btn ghost" id="dressupResetBtn" type="button">Clear</button>
+              </div>
+            </div>
+
+            <div class="previewFrame" role="img" aria-label="Outfit preview">
+              <div class="layerStack" id="previewStackDressup"></div>
+            </div>
+          </div>
+
+          <div class="controlsPanel card">
+            <div class="row">
+              <h3>Wardrobe</h3>
+              <div class="row">
+                <button class="btn ghost" id="dressupBackBtn" type="button">Back</button>
+                <button class="btn primary" id="finishBtn" type="button">Finish</button>
+              </div>
+            </div>
+
+            <div class="categoryTabs" id="dressupCategoryTabs"></div>
+            <div class="categoryContent" id="dressupCategoryContent"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen hidden" data-screen="finished">
+        <div class="card finished">
+          <div class="row">
+            <h2>Finished Look</h2>
+            <div class="row">
+              <button class="btn" id="backToDressupBtn" type="button">Back to Dress Up</button>
+              <button class="btn primary" id="restartBtn" type="button">Restart</button>
+            </div>
+          </div>
+
+          <div class="previewFrame large" role="img" aria-label="Final character preview">
+            <div class="layerStack" id="previewStackFinished"></div>
+          </div>
+
+          <p class="muted small">
+            Next upgrades: saving outfits, randomize button, and real asset pack support.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer muted small">
+        Built as a vanilla HTML/CSS/JS MVP.
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+
