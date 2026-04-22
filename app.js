@@ -1,24 +1,20 @@
 const SCREENS = ["start", "settings", "character", "dressup", "finished"];
+const CHARACTER_LAYER_ORDER = [
+  "ears",
+  "eyes",
+  "pupils",
+  "eyelashes",
+  "eyebrows",
+  "nose",
+  "mouth",
+  "faceDecor",
+  "hair"
+];
+const DRESSUP_LAYER_ORDER = ["top", "bottom", "dress", "socks", "shoes", "jacket", "accessory"];
 
 const LAYERS = {
   base: {
     body: { id: "body", src: "./assets/base/body.svg" }
-  },
-  face: {
-    eyes: { id: "eyes", srcFromStateKey: "eyes" },
-    mouth: { id: "mouth", srcFromStateKey: "mouth" }
-  },
-  hair: {
-    hair: { id: "hair", srcFromStateKey: "hair" }
-  },
-  clothes: {
-    shirt: { id: "shirt", srcFromStateKey: "shirt" },
-    skirt: { id: "skirt", srcFromStateKey: "skirt" },
-    pants: { id: "pants", srcFromStateKey: "pants" },
-    shoes: { id: "shoes", srcFromStateKey: "shoes" }
-  },
-  accessories: {
-    accessory: { id: "accessory", srcFromStateKey: "accessory" }
   }
 };
 
@@ -39,21 +35,24 @@ const state = {
     hair: "hair1",
     hairColor: "brown"
   },
-  outfit: {
-    shirt: "shirt1",
-    skirt: "skirt1",
-    pants: "none",
-    shoes: "shoes1",
-    accessory: "acc1"
-  },
+  outfit: {},
   ui: {
     characterTab: "skinTone",
-    dressupTab: "shirt"
+    dressupTab: "top"
   }
 };
 
 let optionsData = null;
 let optionIndex = null;
+
+function sortTabsByLayerOrder(tabs, preferredOrder) {
+  const rank = new Map(preferredOrder.map((id, idx) => [id, idx]));
+  return [...tabs].sort((a, b) => {
+    const aRank = rank.has(a.id) ? rank.get(a.id) : Number.MAX_SAFE_INTEGER;
+    const bRank = rank.has(b.id) ? rank.get(b.id) : Number.MAX_SAFE_INTEGER;
+    return aRank - bRank;
+  });
+}
 
 function qs(sel, root = document) {
   return root.querySelector(sel);
@@ -142,37 +141,35 @@ function renderLayerStack(rootEl) {
     applyColorTint(body, skinOpt?.color ?? null);
   }
 
-  const eyesSrc = resolveCharacterLayerSrc("eyes");
-  const eyes = makeImg(LAYERS.face.eyes.id, eyesSrc);
-  if (eyes) {
-    rootEl.appendChild(eyes);
-    const eyeColorOpt = optionIndex?.character?.eyeColor?.[state.character.eyeColor];
-    applyColorTint(eyes, eyeColorOpt?.color ?? null);
+  const orderedCharacterTabs = sortTabsByLayerOrder(
+    optionsData?.character?.tabs ?? [],
+    CHARACTER_LAYER_ORDER
+  );
+  for (const tab of orderedCharacterTabs) {
+    // Only image-based tabs become visual layers.
+    const hasImageOption = tab.options?.some((opt) => Object.prototype.hasOwnProperty.call(opt, "src"));
+    if (!hasImageOption) continue;
+    const img = makeImg(tab.id, resolveCharacterLayerSrc(tab.id));
+    if (!img) continue;
+    if (tab.id === "eyes") {
+      const eyeColorOpt = optionIndex?.character?.eyeColor?.[state.character.eyeColor];
+      applyColorTint(img, eyeColorOpt?.color ?? null);
+    }
+    if (tab.id === "hair") {
+      const hairColorOpt = optionIndex?.character?.hairColor?.[state.character.hairColor];
+      applyColorTint(img, hairColorOpt?.color ?? null);
+    }
+    rootEl.appendChild(img);
   }
 
-  const mouthSrc = resolveCharacterLayerSrc("mouth");
-  const mouth = makeImg(LAYERS.face.mouth.id, mouthSrc);
-  if (mouth) rootEl.appendChild(mouth);
-
-  const hairSrc = resolveCharacterLayerSrc("hair");
-  const hair = makeImg(LAYERS.hair.hair.id, hairSrc);
-  if (hair) {
-    rootEl.appendChild(hair);
-    const hairColorOpt = optionIndex?.character?.hairColor?.[state.character.hairColor];
-    applyColorTint(hair, hairColorOpt?.color ?? null);
+  const orderedDressupTabs = sortTabsByLayerOrder(
+    optionsData?.dressup?.tabs ?? [],
+    DRESSUP_LAYER_ORDER
+  );
+  for (const tab of orderedDressupTabs) {
+    const item = makeImg(tab.id, resolveOutfitLayerSrc(tab.id));
+    if (item) rootEl.appendChild(item);
   }
-
-  const shirt = makeImg(LAYERS.clothes.shirt.id, resolveOutfitLayerSrc("shirt"));
-  if (shirt) rootEl.appendChild(shirt);
-  const skirt = makeImg(LAYERS.clothes.skirt.id, resolveOutfitLayerSrc("skirt"));
-  if (skirt) rootEl.appendChild(skirt);
-  const pants = makeImg(LAYERS.clothes.pants.id, resolveOutfitLayerSrc("pants"));
-  if (pants) rootEl.appendChild(pants);
-  const shoes = makeImg(LAYERS.clothes.shoes.id, resolveOutfitLayerSrc("shoes"));
-  if (shoes) rootEl.appendChild(shoes);
-
-  const accessory = makeImg(LAYERS.accessories.accessory.id, resolveOutfitLayerSrc("accessory"));
-  if (accessory) rootEl.appendChild(accessory);
 }
 
 function renderPreview() {
@@ -312,6 +309,7 @@ function renderDressupControls() {
 }
 
 function applyDefaultsFromOptions() {
+  state.outfit = {};
   for (const tab of optionsData.character.tabs) {
     if (state.character[tab.id] == null) state.character[tab.id] = tab.default;
   }
@@ -329,7 +327,7 @@ function resetCharacter() {
 
 function resetOutfit() {
   for (const tab of optionsData.dressup.tabs) state.outfit[tab.id] = tab.default;
-  state.ui.dressupTab = optionsData.dressup.tabs[0]?.id ?? "shirt";
+  state.ui.dressupTab = optionsData.dressup.tabs[0]?.id ?? "top";
   renderDressupControls();
   renderPreview();
 }
