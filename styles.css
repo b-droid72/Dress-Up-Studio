@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Fredoka:wght@400;600&display=swap');
+
 :root {
   --bg: #dff2ff;
   --panel: rgba(255, 255, 255, 0.88);
@@ -13,7 +15,7 @@
   --radius2: 14px;
   --gap: 16px;
   --max: 1120px;
-  --preview: 360px;
+  --preview: 400px;
 }
 
 * {
@@ -27,7 +29,7 @@ body {
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+  font-family: 'Quicksand', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
     "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
   background: radial-gradient(1200px 600px at 15% 15%, #ffffff 0%, var(--bg) 52%, #ccecff 100%);
@@ -71,7 +73,8 @@ body {
 }
 
 .brandTitle {
-  font-weight: 800;
+  font-family: 'Fredoka', cursive;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
@@ -197,6 +200,42 @@ p {
   min-height: 520px;
 }
 
+.controlsLayout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  flex: 1;
+}
+
+.categoryTabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.tab.active {
+  background: rgba(79, 176, 255, 0.18);
+  border-color: rgba(42, 144, 255, 0.35);
+}
+
+.categoryContent {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius2);
+  padding: 12px;
+  overflow: auto;
+}
+
 .controlsPanel {
   display: flex;
   flex-direction: column;
@@ -229,38 +268,33 @@ p {
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  object-position: center;
   image-rendering: auto;
   user-select: none;
   pointer-events: none;
 }
 
-.categoryTabs {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+.layerStack .layerSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
 }
 
-.tab {
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.7);
-  padding: 8px 10px;
-  cursor: pointer;
-  font-weight: 650;
+.layerStack .layer--body {
+  /* Keep body pack visible and aligned; avoid over-shrinking it. */
+  filter: none !important;
+  transform: translateY(0) scale(1);
+  transform-origin: center center;
 }
 
-.tab.active {
-  background: rgba(79, 176, 255, 0.18);
-  border-color: rgba(42, 144, 255, 0.35);
-}
-
-.categoryContent {
-  flex: 1;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.55);
-  border-radius: var(--radius2);
-  padding: 12px;
-  overflow: auto;
+.layerStack .layer--hair {
+  /* Keep hair smaller and above ear height while staying behind face features. */
+  transform: translateY(-34px) scale(0.68);
+  transform-origin: center center;
 }
 
 .optionGroup {
@@ -329,6 +363,81 @@ p {
 .footer {
   text-align: center;
   padding: 10px 0;
+}
+
+.wardrobeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.wardrobeItem {
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wardrobeItem:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.wardrobeItem img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.wardrobeItemName {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.wardrobeItemDate {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalContent {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: var(--radius2);
+  width: 300px;
+  text-align: center;
+}
+
+.modalContent h3 {
+  margin-bottom: 16px;
+}
+
+.modalContent input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.modalContent button {
+  margin: 0 8px;
 }
 
 @media (max-width: 900px) {

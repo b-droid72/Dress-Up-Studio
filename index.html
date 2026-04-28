@@ -121,23 +121,35 @@
         </div>
       </section>
 
+      <section class="screen hidden" data-screen="wardrobe">
+        <div class="card finished">
+          <div class="row">
+            <h2>My Wardrobe</h2>
+            <button class="btn ghost" id="wardrobeBackBtn" type="button">Back to Dress Up</button>
+          </div>
+          <div class="wardrobeGrid" id="wardrobeGrid">
+            <!-- Wardrobe items will be added here dynamically -->
+          </div>
+        </div>
+      </section>
+
       <section class="screen hidden" data-screen="finished">
         <div class="card finished">
           <div class="row">
             <h2>Finished Look</h2>
             <div class="row">
               <button class="btn" id="backToDressupBtn" type="button">Back to Dress Up</button>
-              <button class="btn primary" id="restartBtn" type="button">Restart</button>
+              <button class="btn primary" id="saveOutfitBtn" type="button">Save Outfit</button>
+              <button class="btn primary" id="saveAsPngBtn" type="button">Save as PNG</button>
             </div>
           </div>
-
-          <div class="previewFrame large" role="img" aria-label="Final character preview">
+          <div class="previewFrame large">
             <div class="layerStack" id="previewStackFinished"></div>
           </div>
-
-          <p class="muted small">
-            Next upgrades: saving outfits, randomize button, and real asset pack support.
-          </p>
+          <div class="row">
+            <button class="btn ghost" id="restartBtn" type="button">Restart</button>
+            <button class="btn primary" id="wardrobeBtn" type="button">My Wardrobe</button>
+          </div>
         </div>
       </section>
 
@@ -145,6 +157,30 @@
         Built as a vanilla HTML/CSS/JS MVP.
       </footer>
     </main>
+
+    <!-- Modal for naming character -->
+    <div id="nameModal" class="modal">
+      <div class="modalContent">
+        <h3>Name your character</h3>
+        <input type="text" id="characterNameInput" placeholder="Enter name..." maxlength="30">
+        <div>
+          <button class="btn primary" id="saveNameBtn" type="button">Save</button>
+          <button class="btn ghost" id="cancelNameBtn" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for restart confirmation -->
+    <div id="restartModal" class="modal">
+      <div class="modalContent">
+        <h3>Are you sure you want to restart?</h3>
+        <p>All progress will be lost.</p>
+        <div>
+          <button class="btn primary" id="confirmRestartBtn" type="button">Yes, Restart</button>
+          <button class="btn ghost" id="cancelRestartBtn" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="./app.js"></script>
   </body>

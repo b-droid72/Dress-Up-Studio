@@ -1,17 +1,16 @@
-const SCREENS = ["start", "settings", "character", "dressup", "finished"];
+const SCREENS = ["start", "settings", "character", "dressup", "wardrobe", "finished"];
 const CHARACTER_LAYER_ORDER = [
-  "hair",
+  "faceDecor",
   "ears",
-  "eyes",
-  "pupils",
+  "eyeColor",
   "eyelashes",
   "eyebrows",
-  "bangs",
   "nose",
   "mouth",
-  "faceDecor"
+  "hair",
+  "bangs"
 ];
-const DRESSUP_LAYER_ORDER = ["top", "bottom", "dress", "socks", "shoes", "jacket", "accessory"];
+const DRESSUP_LAYER_ORDER = ["underwear", "top", "bottom", "dress", "shoes", "jacket", "accessory"];
 
 const LAYERS = {
   base: {
@@ -29,14 +28,17 @@ const state = {
     sound: false
   },
   character: {
-    skinTone: "tone_a",
-    skinTexture: "base",
-    eyes: "eyes1",
-    eyeColor: "blue",
+    skinTone: "tone_1",
+    ears: "ears1",
+    eyeColor: "pupils1a",
     mouth: "mouth1",
-    hair: "hair1"
+    hair: "none",
+    eyelashes: "lashes1",
+    faceDecor: "none",
+    hairColor: "#5b3a22"
   },
   outfit: {},
+  wardrobe: [],
   ui: {
     characterTab: "skinTone",
     dressupTab: "top"
@@ -114,10 +116,12 @@ function resolveCharacterLayerSrcs(key) {
   return opt.src ? [opt.src] : [];
 }
 
-function resolveOutfitLayerSrc(key) {
+function resolveOutfitLayerSrcs(key) {
   const valueId = state.outfit[key];
   const opt = optionIndex?.dressup?.[key]?.[valueId];
-  return opt?.src ?? null;
+  if (!opt) return [];
+  if (Array.isArray(opt.srcLayers)) return opt.srcLayers.filter(Boolean);
+  return opt.src ? [opt.src] : [];
 }
 
 function applyColorTint(imgEl, tintColor) {
@@ -204,34 +208,57 @@ function renderLayerStack(rootEl) {
     return img;
   };
 
+  const hairTab = optionsData?.character?.tabs?.find((tab) => tab.id === "hair");
+
+  // Render hair first (behind body)
+  if (hairTab) {
+    const hairColor = state.character.hairColor;
+    const hairSvg = makeHairSvgLayer(state.character.hair, hairColor);
+    if (hairSvg) {
+      rootEl.appendChild(hairSvg);
+    } else {
+      const hairSrc = resolveCharacterLayerSrc("hair");
+      if (hairSrc) {
+        const hair = makeImg("hair", hairSrc);
+        if (hair) {
+          applyColorTint(hair, hairColor);
+          rootEl.appendChild(hair);
+        }
+      }
+    }
+  }
+
   const body = makeImg(LAYERS.base.body.id, resolveBodySrc());
-  if (body) rootEl.appendChild(body);
+  if (body) {
+    rootEl.appendChild(body);
+    const skinOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
+    applyColorTint(body, skinOpt?.color ?? null);
+  }
+
+  // Always render underwear first
+  const underwearSrcs = ["./assets/clothes/underwear/bra.webp", "./assets/clothes/underwear/slip.webp"];
+  for (const src of underwearSrcs) {
+    const underwear = makeImg("underwear", src);
+    if (underwear) rootEl.appendChild(underwear);
+  }
 
   const orderedCharacterTabs = sortTabsByLayerOrder(
     optionsData?.character?.tabs ?? [],
     CHARACTER_LAYER_ORDER
   );
   for (const tab of orderedCharacterTabs) {
-    if (tab.id === "skinTone" || tab.id === "skinTexture") continue;
+    if (tab.id === "skinTone" || tab.id === "hair") continue;
     // Only image-based tabs become visual layers.
     const hasImageOption = tab.options?.some((opt) => Object.prototype.hasOwnProperty.call(opt, "src"));
     if (!hasImageOption) continue;
-    if (tab.id === "hair") {
-      const hairSvg = makeHairSvgLayer(state.character.hair, null);
-      if (hairSvg) {
-        rootEl.appendChild(hairSvg);
-        continue;
-      }
-    }
-
     const layerSrcs = resolveCharacterLayerSrcs(tab.id);
     if (!layerSrcs.length) continue;
     for (const src of layerSrcs) {
       const img = makeImg(tab.id, src);
       if (!img) continue;
-      if (tab.id === "eyes") {
-        const eyeColorOpt = optionIndex?.character?.eyeColor?.[state.character.eyeColor];
-        applyColorTint(img, eyeColorOpt?.color ?? null);
+      if (tab.id === "ears" || tab.id === "eyeColor") {
+        const skinOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
+        applyColorTint(img, skinOpt?.color ?? null);
       }
       rootEl.appendChild(img);
     }
@@ -242,8 +269,12 @@ function renderLayerStack(rootEl) {
     DRESSUP_LAYER_ORDER
   );
   for (const tab of orderedDressupTabs) {
-    const item = makeImg(tab.id, resolveOutfitLayerSrc(tab.id));
-    if (item) rootEl.appendChild(item);
+    const layerSrcs = resolveOutfitLayerSrcs(tab.id);
+    if (!layerSrcs.length) continue;
+    for (const src of layerSrcs) {
+      const item = makeImg(tab.id, src);
+      if (item) rootEl.appendChild(item);
+    }
   }
 }
 
@@ -296,15 +327,12 @@ function renderOptionGrid({ container, tab, activeId, onSelect, showSwatch }) {
       sw.className = "swatch";
       sw.style.background = opt.color;
       right.appendChild(sw);
-    } else {
-      const hint = document.createElement("div");
-      hint.className = "muted small";
-      hint.textContent = opt.src ? "Preview" : "None";
-      right.appendChild(hint);
     }
 
     btn.appendChild(left);
-    btn.appendChild(right);
+    if (right.children.length > 0) {
+      btn.appendChild(right);
+    }
     btn.addEventListener("click", () => onSelect(opt.id));
     grid.appendChild(btn);
   }
@@ -435,13 +463,247 @@ function initEvents() {
   qs("#dressupBackBtn").addEventListener("click", () => setScreen("character"));
   qs("#backToDressupBtn").addEventListener("click", () => setScreen("dressup"));
   qs("#restartBtn").addEventListener("click", () => {
+    qs("#restartModal").style.display = "block";
+  });
+  qs("#confirmRestartBtn").addEventListener("click", () => {
+    qs("#restartModal").style.display = "none";
     resetCharacter();
     resetOutfit();
     setScreen("start");
   });
+  qs("#cancelRestartBtn").addEventListener("click", () => {
+    qs("#restartModal").style.display = "none";
+  });
+  qs("#saveOutfitBtn").addEventListener("click", () => {
+    qs("#nameModal").style.display = "block";
+    qs("#characterNameInput").value = "";
+    qs("#characterNameInput").focus();
+  });
+  qs("#saveNameBtn").addEventListener("click", () => {
+    const name = qs("#characterNameInput").value.trim();
+    if (name) {
+      saveOutfit(name);
+      qs("#nameModal").style.display = "none";
+    }
+  });
+  qs("#cancelNameBtn").addEventListener("click", () => {
+    qs("#nameModal").style.display = "none";
+  });
+  qs("#saveAsPngBtn").addEventListener("click", () => {
+    saveAsPNG();
+  });
+  qs("#wardrobeBtn").addEventListener("click", () => {
+    setScreen("wardrobe");
+    renderWardrobe();
+  });
+  qs("#wardrobeBackBtn").addEventListener("click", () => setScreen("dressup"));
 
   qs("#characterResetBtn").addEventListener("click", resetCharacter);
   qs("#dressupResetBtn").addEventListener("click", resetOutfit);
+}
+
+function renderWardrobe() {
+  const grid = qs("#wardrobeGrid");
+  grid.innerHTML = "";
+  
+  if (state.wardrobe.length === 0) {
+    grid.innerHTML = "<p style='text-align: center; color: var(--muted);'>No saved outfits yet.</p>";
+    return;
+  }
+  
+  state.wardrobe.forEach((outfit, index) => {
+    const item = document.createElement("div");
+    item.className = "wardrobeItem";
+    item.innerHTML = `
+      <img src="${outfit.thumbnail}" alt="${outfit.name}">
+      <div class="wardrobeItemName">${outfit.name}</div>
+      <div class="wardrobeItemDate">${new Date(outfit.date).toLocaleDateString()}</div>
+    `;
+    item.addEventListener("click", () => loadOutfit(index));
+    grid.appendChild(item);
+  });
+}
+
+function saveOutfit(name) {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const stack = qs("#previewStackFinished");
+  const rect = stack.getBoundingClientRect();
+  
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+  
+  // Create a temporary stack to render the outfit
+  const tempStack = document.createElement("div");
+  tempStack.style.position = "absolute";
+  tempStack.style.left = "-9999px";
+  tempStack.style.width = rect.width + "px";
+  tempStack.style.height = rect.height + "px";
+  document.body.appendChild(tempStack);
+  
+  renderLayerStack(tempStack);
+  
+  // Wait for images to load
+  const images = tempStack.querySelectorAll("img");
+  let loadedCount = 0;
+  
+  images.forEach(img => {
+    if (img.complete) {
+      loadedCount++;
+    } else {
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          captureAndSave();
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          captureAndSave();
+        }
+      };
+    }
+  });
+  
+  if (loadedCount === images.length) {
+    captureAndSave();
+  }
+  
+  function captureAndSave() {
+    // Draw each layer to canvas
+    const layers = tempStack.querySelectorAll("img, svg");
+    layers.forEach(layer => {
+      if (layer.tagName === "IMG") {
+        ctx.drawImage(layer, 0, 0, rect.width, rect.height);
+      } else if (layer.tagName === "SVG") {
+        const svgData = new XMLSerializer().serializeToString(layer);
+        const img = new Image();
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, rect.width, rect.height);
+        };
+        img.src = "data:image/svg+xml;base64," + btoa(svgData);
+      }
+    });
+    
+    const thumbnail = canvas.toDataURL("image/png");
+    
+    const outfit = {
+      name: name,
+      date: Date.now(),
+      character: { ...state.character },
+      outfit: { ...state.outfit },
+      thumbnail: thumbnail
+    };
+    
+    state.wardrobe.push(outfit);
+    localStorage.setItem("dressupWardrobe", JSON.stringify(state.wardrobe));
+    
+    document.body.removeChild(tempStack);
+    
+    // Show success message
+    const successMsg = document.createElement("div");
+    successMsg.textContent = "Outfit saved successfully!";
+    successMsg.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      z-index: 1001;
+    `;
+    document.body.appendChild(successMsg);
+    setTimeout(() => document.body.removeChild(successMsg), 3000);
+  }
+}
+
+function loadOutfit(index) {
+  const outfit = state.wardrobe[index];
+  state.character = { ...outfit.character };
+  state.outfit = { ...outfit.outfit };
+  renderCharacterControls();
+  renderDressupControls();
+  renderPreview();
+  setScreen("dressup");
+}
+
+function saveAsPNG() {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const stack = qs("#previewStackFinished");
+  const rect = stack.getBoundingClientRect();
+  
+  canvas.width = rect.width * 2; // Higher resolution
+  canvas.height = rect.height * 2;
+  ctx.scale(2, 2);
+  
+  // Create a temporary stack to render the outfit
+  const tempStack = document.createElement("div");
+  tempStack.style.position = "absolute";
+  tempStack.style.left = "-9999px";
+  tempStack.style.width = rect.width + "px";
+  tempStack.style.height = rect.height + "px";
+  document.body.appendChild(tempStack);
+  
+  renderLayerStack(tempStack);
+  
+  // Wait for images to load
+  const images = tempStack.querySelectorAll("img");
+  let loadedCount = 0;
+  
+  images.forEach(img => {
+    if (img.complete) {
+      loadedCount++;
+    } else {
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          captureAndDownload();
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          captureAndDownload();
+        }
+      };
+    }
+  });
+  
+  if (loadedCount === images.length) {
+    captureAndDownload();
+  }
+  
+  function captureAndDownload() {
+    // Draw each layer to canvas
+    const layers = tempStack.querySelectorAll("img, svg");
+    layers.forEach(layer => {
+      if (layer.tagName === "IMG") {
+        ctx.drawImage(layer, 0, 0, rect.width, rect.height);
+      } else if (layer.tagName === "SVG") {
+        const svgData = new XMLSerializer().serializeToString(layer);
+        const img = new Image();
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, rect.width, rect.height);
+        };
+        img.src = "data:image/svg+xml;base64," + btoa(svgData);
+      }
+    });
+    
+    document.body.removeChild(tempStack);
+    
+    // Download the image
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `dress-up-character-${Date.now()}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
 }
 
 async function init() {
@@ -449,6 +711,12 @@ async function init() {
   optionsData = await res.json();
   optionIndex = buildOptionIndex(optionsData);
   await preloadHairSvgTemplates();
+
+  // Load wardrobe from localStorage
+  const savedWardrobe = localStorage.getItem("dressupWardrobe");
+  if (savedWardrobe) {
+    state.wardrobe = JSON.parse(savedWardrobe);
+  }
 
   applyDefaultsFromOptions();
   initEvents();

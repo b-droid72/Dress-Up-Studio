@@ -1,1224 +1,1146 @@
 {
-    "character":  {
-                      "tabs":  [
-                                   {
-                                       "id":  "skinTone",
-                                       "label":  "Skin",
-                                       "type":  "color",
-                                       "default":  "tone1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "tone1",
-                                                           "label":  "Tone 1",
-                                                           "color":  "#f2d7c1"
-                                                       },
-                                                       {
-                                                           "id":  "tone2",
-                                                           "label":  "Tone 2",
-                                                           "color":  "#d7ad8b"
-                                                       },
-                                                       {
-                                                           "id":  "tone3",
-                                                           "label":  "Tone 3",
-                                                           "color":  "#a77658"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "ears",
-                                       "label":  "Ears",
-                                       "type":  "image",
-                                       "default":  "ears1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "ears1",
-                                                           "label":  "1",
-                                                           "src":  "./assets/features/ears/1.png"
-                                                       },
-                                                       {
-                                                           "id":  "ears2",
-                                                           "label":  "2",
-                                                           "src":  "./assets/features/ears/2.png"
-                                                       },
-                                                       {
-                                                           "id":  "ears3",
-                                                           "label":  "3",
-                                                           "src":  "./assets/features/ears/3.png"
-                                                       },
-                                                       {
-                                                           "id":  "ears4",
-                                                           "label":  "4",
-                                                           "src":  "./assets/features/ears/4.png"
-                                                       },
-                                                       {
-                                                           "id":  "ears5",
-                                                           "label":  "5",
-                                                           "src":  "./assets/features/ears/5.png"
-                                                       },
-                                                       {
-                                                           "id":  "ears6",
-                                                           "label":  "6",
-                                                           "src":  "./assets/features/ears/6.png"
-                                                       },
-                                                       {
-                                                           "id":  "ears7",
-                                                           "label":  "7",
-                                                           "src":  "./assets/features/ears/7.png"
-                                                       },
-                                                       {
-                                                           "id":  "ears8",
-                                                           "label":  "8",
-                                                           "src":  "./assets/features/ears/8.png"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "eyes",
-                                       "label":  "Eyes",
-                                       "type":  "image",
-                                       "default":  "eyes1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "eyes1",
-                                                           "label":  "1",
-                                                           "src":  "./assets/features/eyes/1.png"
-                                                       },
-                                                       {
-                                                           "id":  "eyes2",
-                                                           "label":  "2",
-                                                           "src":  "./assets/features/eyes/2.png"
-                                                       },
-                                                       {
-                                                           "id":  "eyes3",
-                                                           "label":  "3",
-                                                           "src":  "./assets/features/eyes/3.png"
-                                                       },
-                                                       {
-                                                           "id":  "eyes4",
-                                                           "label":  "4",
-                                                           "src":  "./assets/features/eyes/4.png"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "pupils",
-                                       "label":  "Pupils",
-                                       "type":  "image",
-                                       "default":  "none",
-                                       "options":  [
-
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "eyelashes",
-                                       "label":  "Eyelashes",
-                                       "type":  "image",
-                                       "default":  "none",
-                                       "options":  [
-
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "eyebrows",
-                                       "label":  "Eyebrows",
-                                       "type":  "image",
-                                       "default":  "brow1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "none",
-                                                           "label":  "None",
-                                                           "src":  null
-                                                       },
-                                                       {
-                                                           "id":  "brow1",
-                                                           "label":  "1",
-                                                           "src":  "./assets/features/eyebrows/1.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow2",
-                                                           "label":  "10",
-                                                           "src":  "./assets/features/eyebrows/10.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow3",
-                                                           "label":  "2",
-                                                           "src":  "./assets/features/eyebrows/2.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow4",
-                                                           "label":  "3",
-                                                           "src":  "./assets/features/eyebrows/3.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow5",
-                                                           "label":  "4",
-                                                           "src":  "./assets/features/eyebrows/4.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow6",
-                                                           "label":  "5",
-                                                           "src":  "./assets/features/eyebrows/5.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow7",
-                                                           "label":  "6",
-                                                           "src":  "./assets/features/eyebrows/6.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow8",
-                                                           "label":  "7",
-                                                           "src":  "./assets/features/eyebrows/7.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow9",
-                                                           "label":  "8",
-                                                           "src":  "./assets/features/eyebrows/8.png"
-                                                       },
-                                                       {
-                                                           "id":  "brow10",
-                                                           "label":  "9",
-                                                           "src":  "./assets/features/eyebrows/9.png"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "nose",
-                                       "label":  "Nose",
-                                       "type":  "image",
-                                       "default":  "nose1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "none",
-                                                           "label":  "None",
-                                                           "src":  null
-                                                       },
-                                                       {
-                                                           "id":  "nose1",
-                                                           "label":  "1",
-                                                           "src":  "./assets/features/nose/1.png"
-                                                       },
-                                                       {
-                                                           "id":  "nose2",
-                                                           "label":  "2",
-                                                           "src":  "./assets/features/nose/2.png"
-                                                       },
-                                                       {
-                                                           "id":  "nose3",
-                                                           "label":  "3",
-                                                           "src":  "./assets/features/nose/3.png"
-                                                       },
-                                                       {
-                                                           "id":  "nose4",
-                                                           "label":  "4",
-                                                           "src":  "./assets/features/nose/4.png"
-                                                       },
-                                                       {
-                                                           "id":  "nose5",
-                                                           "label":  "5",
-                                                           "src":  "./assets/features/nose/5.png"
-                                                       },
-                                                       {
-                                                           "id":  "nose6",
-                                                           "label":  "6",
-                                                           "src":  "./assets/features/nose/6.png"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "mouth",
-                                       "label":  "Mouth",
-                                       "type":  "image",
-                                       "default":  "mouth1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "mouth1",
-                                                           "label":  "1",
-                                                           "src":  "./assets/features/mouth/1.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth2",
-                                                           "label":  "10",
-                                                           "src":  "./assets/features/mouth/10.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth3",
-                                                           "label":  "11",
-                                                           "src":  "./assets/features/mouth/11.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth4",
-                                                           "label":  "12",
-                                                           "src":  "./assets/features/mouth/12.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth5",
-                                                           "label":  "13",
-                                                           "src":  "./assets/features/mouth/13.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth6",
-                                                           "label":  "14",
-                                                           "src":  "./assets/features/mouth/14.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth7",
-                                                           "label":  "2",
-                                                           "src":  "./assets/features/mouth/2.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth8",
-                                                           "label":  "3",
-                                                           "src":  "./assets/features/mouth/3.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth9",
-                                                           "label":  "4",
-                                                           "src":  "./assets/features/mouth/4.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth10",
-                                                           "label":  "5",
-                                                           "src":  "./assets/features/mouth/5.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth11",
-                                                           "label":  "6",
-                                                           "src":  "./assets/features/mouth/6.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth12",
-                                                           "label":  "7",
-                                                           "src":  "./assets/features/mouth/7.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth13",
-                                                           "label":  "8",
-                                                           "src":  "./assets/features/mouth/8.png"
-                                                       },
-                                                       {
-                                                           "id":  "mouth14",
-                                                           "label":  "9",
-                                                           "src":  "./assets/features/mouth/9.png"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "faceDecor",
-                                       "label":  "Face Decor",
-                                       "type":  "image",
-                                       "default":  "decor1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "none",
-                                                           "label":  "None",
-                                                           "src":  null
-                                                       },
-                                                       {
-                                                           "id":  "decor1",
-                                                           "label":  "1",
-                                                           "src":  "./assets/features/decor face/1.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor2",
-                                                           "label":  "10",
-                                                           "src":  "./assets/features/decor face/10.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor3",
-                                                           "label":  "11",
-                                                           "src":  "./assets/features/decor face/11.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor4",
-                                                           "label":  "12",
-                                                           "src":  "./assets/features/decor face/12.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor5",
-                                                           "label":  "13",
-                                                           "src":  "./assets/features/decor face/13.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor6",
-                                                           "label":  "14",
-                                                           "src":  "./assets/features/decor face/14.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor7",
-                                                           "label":  "15",
-                                                           "src":  "./assets/features/decor face/15.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor8",
-                                                           "label":  "16",
-                                                           "src":  "./assets/features/decor face/16.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor9",
-                                                           "label":  "17",
-                                                           "src":  "./assets/features/decor face/17.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor10",
-                                                           "label":  "18",
-                                                           "src":  "./assets/features/decor face/18.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor11",
-                                                           "label":  "19",
-                                                           "src":  "./assets/features/decor face/19.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor12",
-                                                           "label":  "2",
-                                                           "src":  "./assets/features/decor face/2.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor13",
-                                                           "label":  "20",
-                                                           "src":  "./assets/features/decor face/20.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor14",
-                                                           "label":  "21",
-                                                           "src":  "./assets/features/decor face/21.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor15",
-                                                           "label":  "3",
-                                                           "src":  "./assets/features/decor face/3.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor16",
-                                                           "label":  "4",
-                                                           "src":  "./assets/features/decor face/4.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor17",
-                                                           "label":  "5",
-                                                           "src":  "./assets/features/decor face/5.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor18",
-                                                           "label":  "6",
-                                                           "src":  "./assets/features/decor face/6.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor19",
-                                                           "label":  "7",
-                                                           "src":  "./assets/features/decor face/7.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor20",
-                                                           "label":  "8",
-                                                           "src":  "./assets/features/decor face/8.png"
-                                                       },
-                                                       {
-                                                           "id":  "decor21",
-                                                           "label":  "9",
-                                                           "src":  "./assets/features/decor face/9.png"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "eyeColor",
-                                       "label":  "Eye color",
-                                       "type":  "color",
-                                       "default":  "blue",
-                                       "options":  [
-                                                       {
-                                                           "id":  "blue",
-                                                           "label":  "Blue",
-                                                           "color":  "#2a90ff"
-                                                       },
-                                                       {
-                                                           "id":  "green",
-                                                           "label":  "Green",
-                                                           "color":  "#2fbf71"
-                                                       },
-                                                       {
-                                                           "id":  "brown",
-                                                           "label":  "Brown",
-                                                           "color":  "#8b5a2b"
-                                                       },
-                                                       {
-                                                           "id":  "gray",
-                                                           "label":  "Gray",
-                                                           "color":  "#6f7c8a"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "hair",
-                                       "label":  "Hair",
-                                       "type":  "image",
-                                       "default":  "hair1",
-                                       "options":  [
-                                                       {
-                                                           "id":  "hair1",
-                                                           "label":  "Short",
-                                                           "src":  "./assets/hair/hair_short.svg"
-                                                       },
-                                                       {
-                                                           "id":  "hair2",
-                                                           "label":  "Long",
-                                                           "src":  "./assets/hair/hair_long.svg"
-                                                       },
-                                                       {
-                                                           "id":  "hair3",
-                                                           "label":  "Bun",
-                                                           "src":  "./assets/hair/hair_bun.svg"
-                                                       },
-                                                       {
-                                                           "id":  "hair4",
-                                                           "label":  "Ponytail",
-                                                           "src":  "./assets/hair/hair_pony.svg"
-                                                       }
-                                                   ]
-                                   },
-                                   {
-                                       "id":  "hairColor",
-                                       "label":  "Hair color",
-                                       "type":  "color",
-                                       "default":  "brown",
-                                       "options":  [
-                                                       {
-                                                           "id":  "black",
-                                                           "label":  "Black",
-                                                           "color":  "#1f2328"
-                                                       },
-                                                       {
-                                                           "id":  "brown",
-                                                           "label":  "Brown",
-                                                           "color":  "#5b3a22"
-                                                       },
-                                                       {
-                                                           "id":  "blonde",
-                                                           "label":  "Blonde",
-                                                           "color":  "#d9b25f"
-                                                       },
-                                                       {
-                                                           "id":  "pink",
-                                                           "label":  "Pink",
-                                                           "color":  "#ff6fb3"
-                                                       }
-                                                   ]
-                                   }
-                               ]
-                  },
-    "dressup":  {
-                    "tabs":  [
-                                 {
-                                     "id":  "top",
-                                     "label":  "Top",
-                                     "type":  "imageOrNone",
-                                     "default":  "top1",
-                                     "options":  [
-                                                     {
-                                                         "id":  "none",
-                                                         "label":  "None",
-                                                         "src":  null
-                                                     },
-                                                     {
-                                                         "id":  "top1",
-                                                         "label":  "1",
-                                                         "src":  "./assets/pack/top/1.png"
-                                                     },
-                                                     {
-                                                         "id":  "top2",
-                                                         "label":  "10",
-                                                         "src":  "./assets/pack/top/10.png"
-                                                     },
-                                                     {
-                                                         "id":  "top3",
-                                                         "label":  "11",
-                                                         "src":  "./assets/pack/top/11.png"
-                                                     },
-                                                     {
-                                                         "id":  "top4",
-                                                         "label":  "12",
-                                                         "src":  "./assets/pack/top/12.png"
-                                                     },
-                                                     {
-                                                         "id":  "top5",
-                                                         "label":  "13",
-                                                         "src":  "./assets/pack/top/13.png"
-                                                     },
-                                                     {
-                                                         "id":  "top6",
-                                                         "label":  "14",
-                                                         "src":  "./assets/pack/top/14.png"
-                                                     },
-                                                     {
-                                                         "id":  "top7",
-                                                         "label":  "15",
-                                                         "src":  "./assets/pack/top/15.png"
-                                                     },
-                                                     {
-                                                         "id":  "top8",
-                                                         "label":  "16",
-                                                         "src":  "./assets/pack/top/16.png"
-                                                     },
-                                                     {
-                                                         "id":  "top9",
-                                                         "label":  "17",
-                                                         "src":  "./assets/pack/top/17.png"
-                                                     },
-                                                     {
-                                                         "id":  "top10",
-                                                         "label":  "18",
-                                                         "src":  "./assets/pack/top/18.png"
-                                                     },
-                                                     {
-                                                         "id":  "top11",
-                                                         "label":  "19",
-                                                         "src":  "./assets/pack/top/19.png"
-                                                     },
-                                                     {
-                                                         "id":  "top12",
-                                                         "label":  "2",
-                                                         "src":  "./assets/pack/top/2.png"
-                                                     },
-                                                     {
-                                                         "id":  "top13",
-                                                         "label":  "20",
-                                                         "src":  "./assets/pack/top/20.png"
-                                                     },
-                                                     {
-                                                         "id":  "top14",
-                                                         "label":  "3",
-                                                         "src":  "./assets/pack/top/3.png"
-                                                     },
-                                                     {
-                                                         "id":  "top15",
-                                                         "label":  "4",
-                                                         "src":  "./assets/pack/top/4.png"
-                                                     },
-                                                     {
-                                                         "id":  "top16",
-                                                         "label":  "5",
-                                                         "src":  "./assets/pack/top/5.png"
-                                                     },
-                                                     {
-                                                         "id":  "top17",
-                                                         "label":  "6",
-                                                         "src":  "./assets/pack/top/6.png"
-                                                     },
-                                                     {
-                                                         "id":  "top18",
-                                                         "label":  "7",
-                                                         "src":  "./assets/pack/top/7.png"
-                                                     },
-                                                     {
-                                                         "id":  "top19",
-                                                         "label":  "8",
-                                                         "src":  "./assets/pack/top/8.png"
-                                                     },
-                                                     {
-                                                         "id":  "top20",
-                                                         "label":  "9",
-                                                         "src":  "./assets/pack/top/9.png"
-                                                     }
-                                                 ]
-                                 },
-                                 {
-                                     "id":  "bottom",
-                                     "label":  "Bottom",
-                                     "type":  "imageOrNone",
-                                     "default":  "bottom1",
-                                     "options":  [
-                                                     {
-                                                         "id":  "none",
-                                                         "label":  "None",
-                                                         "src":  null
-                                                     },
-                                                     {
-                                                         "id":  "bottom1",
-                                                         "label":  "1",
-                                                         "src":  "./assets/pack/bottom/1.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom2",
-                                                         "label":  "10",
-                                                         "src":  "./assets/pack/bottom/10.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom3",
-                                                         "label":  "11",
-                                                         "src":  "./assets/pack/bottom/11.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom4",
-                                                         "label":  "12",
-                                                         "src":  "./assets/pack/bottom/12.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom5",
-                                                         "label":  "13",
-                                                         "src":  "./assets/pack/bottom/13.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom6",
-                                                         "label":  "2",
-                                                         "src":  "./assets/pack/bottom/2.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom7",
-                                                         "label":  "3",
-                                                         "src":  "./assets/pack/bottom/3.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom8",
-                                                         "label":  "4",
-                                                         "src":  "./assets/pack/bottom/4.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom9",
-                                                         "label":  "5",
-                                                         "src":  "./assets/pack/bottom/5.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom10",
-                                                         "label":  "6",
-                                                         "src":  "./assets/pack/bottom/6.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom11",
-                                                         "label":  "7",
-                                                         "src":  "./assets/pack/bottom/7.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom12",
-                                                         "label":  "8",
-                                                         "src":  "./assets/pack/bottom/8.png"
-                                                     },
-                                                     {
-                                                         "id":  "bottom13",
-                                                         "label":  "9",
-                                                         "src":  "./assets/pack/bottom/9.png"
-                                                     }
-                                                 ]
-                                 },
-                                 {
-                                     "id":  "dress",
-                                     "label":  "Dress",
-                                     "type":  "imageOrNone",
-                                     "default":  "dress1",
-                                     "options":  [
-                                                     {
-                                                         "id":  "none",
-                                                         "label":  "None",
-                                                         "src":  null
-                                                     },
-                                                     {
-                                                         "id":  "dress1",
-                                                         "label":  "1",
-                                                         "src":  "./assets/pack/dress/1.png"
-                                                     },
-                                                     {
-                                                         "id":  "dress2",
-                                                         "label":  "2",
-                                                         "src":  "./assets/pack/dress/2.png"
-                                                     },
-                                                     {
-                                                         "id":  "dress3",
-                                                         "label":  "3",
-                                                         "src":  "./assets/pack/dress/3.png"
-                                                     },
-                                                     {
-                                                         "id":  "dress4",
-                                                         "label":  "3b",
-                                                         "src":  "./assets/pack/dress/3b.png"
-                                                     },
-                                                     {
-                                                         "id":  "dress5",
-                                                         "label":  "5",
-                                                         "src":  "./assets/pack/dress/5.png"
-                                                     }
-                                                 ]
-                                 },
-                                 {
-                                     "id":  "jacket",
-                                     "label":  "Jacket",
-                                     "type":  "imageOrNone",
-                                     "default":  "jacket1",
-                                     "options":  [
-                                                     {
-                                                         "id":  "none",
-                                                         "label":  "None",
-                                                         "src":  null
-                                                     },
-                                                     {
-                                                         "id":  "jacket1",
-                                                         "label":  "1",
-                                                         "src":  "./assets/pack/jacket/1.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket2",
-                                                         "label":  "10",
-                                                         "src":  "./assets/pack/jacket/10.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket3",
-                                                         "label":  "11",
-                                                         "src":  "./assets/pack/jacket/11.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket4",
-                                                         "label":  "12",
-                                                         "src":  "./assets/pack/jacket/12.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket5",
-                                                         "label":  "13",
-                                                         "src":  "./assets/pack/jacket/13.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket6",
-                                                         "label":  "13b",
-                                                         "src":  "./assets/pack/jacket/13b.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket7",
-                                                         "label":  "2",
-                                                         "src":  "./assets/pack/jacket/2.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket8",
-                                                         "label":  "2b",
-                                                         "src":  "./assets/pack/jacket/2b.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket9",
-                                                         "label":  "3",
-                                                         "src":  "./assets/pack/jacket/3.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket10",
-                                                         "label":  "4",
-                                                         "src":  "./assets/pack/jacket/4.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket11",
-                                                         "label":  "5",
-                                                         "src":  "./assets/pack/jacket/5.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket12",
-                                                         "label":  "6",
-                                                         "src":  "./assets/pack/jacket/6.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket13",
-                                                         "label":  "7",
-                                                         "src":  "./assets/pack/jacket/7.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket14",
-                                                         "label":  "8",
-                                                         "src":  "./assets/pack/jacket/8.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket15",
-                                                         "label":  "8b",
-                                                         "src":  "./assets/pack/jacket/8b.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket16",
-                                                         "label":  "9",
-                                                         "src":  "./assets/pack/jacket/9.png"
-                                                     },
-                                                     {
-                                                         "id":  "jacket17",
-                                                         "label":  "9b",
-                                                         "src":  "./assets/pack/jacket/9b.png"
-                                                     }
-                                                 ]
-                                 },
-                                 {
-                                     "id":  "shoes",
-                                     "label":  "Shoes",
-                                     "type":  "imageOrNone",
-                                     "default":  "shoes1",
-                                     "options":  [
-                                                     {
-                                                         "id":  "none",
-                                                         "label":  "None",
-                                                         "src":  null
-                                                     },
-                                                     {
-                                                         "id":  "shoes1",
-                                                         "label":  "1",
-                                                         "src":  "./assets/pack/shoes/1.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes2",
-                                                         "label":  "2",
-                                                         "src":  "./assets/pack/shoes/2.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes3",
-                                                         "label":  "3",
-                                                         "src":  "./assets/pack/shoes/3.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes4",
-                                                         "label":  "4",
-                                                         "src":  "./assets/pack/shoes/4.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes5",
-                                                         "label":  "5",
-                                                         "src":  "./assets/pack/shoes/5.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes6",
-                                                         "label":  "6",
-                                                         "src":  "./assets/pack/shoes/6.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes7",
-                                                         "label":  "7",
-                                                         "src":  "./assets/pack/shoes/7.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes8",
-                                                         "label":  "8",
-                                                         "src":  "./assets/pack/shoes/8.png"
-                                                     },
-                                                     {
-                                                         "id":  "shoes9",
-                                                         "label":  "9",
-                                                         "src":  "./assets/pack/shoes/9.png"
-                                                     }
-                                                 ]
-                                 },
-                                 {
-                                     "id":  "socks",
-                                     "label":  "Socks",
-                                     "type":  "imageOrNone",
-                                     "default":  "socks1",
-                                     "options":  [
-                                                     {
-                                                         "id":  "none",
-                                                         "label":  "None",
-                                                         "src":  null
-                                                     },
-                                                     {
-                                                         "id":  "socks1",
-                                                         "label":  "1",
-                                                         "src":  "./assets/pack/socks/1.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks2",
-                                                         "label":  "10",
-                                                         "src":  "./assets/pack/socks/10.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks3",
-                                                         "label":  "2",
-                                                         "src":  "./assets/pack/socks/2.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks4",
-                                                         "label":  "3",
-                                                         "src":  "./assets/pack/socks/3.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks5",
-                                                         "label":  "4",
-                                                         "src":  "./assets/pack/socks/4.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks6",
-                                                         "label":  "5",
-                                                         "src":  "./assets/pack/socks/5.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks7",
-                                                         "label":  "6",
-                                                         "src":  "./assets/pack/socks/6.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks8",
-                                                         "label":  "7",
-                                                         "src":  "./assets/pack/socks/7.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks9",
-                                                         "label":  "8",
-                                                         "src":  "./assets/pack/socks/8.png"
-                                                     },
-                                                     {
-                                                         "id":  "socks10",
-                                                         "label":  "9",
-                                                         "src":  "./assets/pack/socks/9.png"
-                                                     }
-                                                 ]
-                                 },
-                                 {
-                                     "id":  "accessory",
-                                     "label":  "Accessories",
-                                     "type":  "imageOrNone",
-                                     "default":  "acc1",
-                                     "options":  [
-                                                     {
-                                                         "id":  "none",
-                                                         "label":  "None",
-                                                         "src":  null
-                                                     },
-                                                     {
-                                                         "id":  "acc1",
-                                                         "label":  "1",
-                                                         "src":  "./assets/pack/accessories/1.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc2",
-                                                         "label":  "10",
-                                                         "src":  "./assets/pack/accessories/10.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc3",
-                                                         "label":  "11",
-                                                         "src":  "./assets/pack/accessories/11.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc4",
-                                                         "label":  "13",
-                                                         "src":  "./assets/pack/accessories/13.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc5",
-                                                         "label":  "13b",
-                                                         "src":  "./assets/pack/accessories/13b.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc6",
-                                                         "label":  "14",
-                                                         "src":  "./assets/pack/accessories/14.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc7",
-                                                         "label":  "15",
-                                                         "src":  "./assets/pack/accessories/15.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc8",
-                                                         "label":  "16",
-                                                         "src":  "./assets/pack/accessories/16.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc9",
-                                                         "label":  "16b",
-                                                         "src":  "./assets/pack/accessories/16b.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc10",
-                                                         "label":  "17",
-                                                         "src":  "./assets/pack/accessories/17.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc11",
-                                                         "label":  "18",
-                                                         "src":  "./assets/pack/accessories/18.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc12",
-                                                         "label":  "19",
-                                                         "src":  "./assets/pack/accessories/19.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc13",
-                                                         "label":  "2",
-                                                         "src":  "./assets/pack/accessories/2.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc14",
-                                                         "label":  "20",
-                                                         "src":  "./assets/pack/accessories/20.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc15",
-                                                         "label":  "21",
-                                                         "src":  "./assets/pack/accessories/21.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc16",
-                                                         "label":  "22",
-                                                         "src":  "./assets/pack/accessories/22.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc17",
-                                                         "label":  "23",
-                                                         "src":  "./assets/pack/accessories/23.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc18",
-                                                         "label":  "24",
-                                                         "src":  "./assets/pack/accessories/24.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc19",
-                                                         "label":  "25",
-                                                         "src":  "./assets/pack/accessories/25.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc20",
-                                                         "label":  "26",
-                                                         "src":  "./assets/pack/accessories/26.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc21",
-                                                         "label":  "27",
-                                                         "src":  "./assets/pack/accessories/27.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc22",
-                                                         "label":  "28",
-                                                         "src":  "./assets/pack/accessories/28.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc23",
-                                                         "label":  "29",
-                                                         "src":  "./assets/pack/accessories/29.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc24",
-                                                         "label":  "3",
-                                                         "src":  "./assets/pack/accessories/3.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc25",
-                                                         "label":  "30",
-                                                         "src":  "./assets/pack/accessories/30.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc26",
-                                                         "label":  "31",
-                                                         "src":  "./assets/pack/accessories/31.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc27",
-                                                         "label":  "32",
-                                                         "src":  "./assets/pack/accessories/32.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc28",
-                                                         "label":  "33",
-                                                         "src":  "./assets/pack/accessories/33.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc29",
-                                                         "label":  "34",
-                                                         "src":  "./assets/pack/accessories/34.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc30",
-                                                         "label":  "35",
-                                                         "src":  "./assets/pack/accessories/35.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc31",
-                                                         "label":  "36",
-                                                         "src":  "./assets/pack/accessories/36.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc32",
-                                                         "label":  "37",
-                                                         "src":  "./assets/pack/accessories/37.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc33",
-                                                         "label":  "38",
-                                                         "src":  "./assets/pack/accessories/38.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc34",
-                                                         "label":  "39",
-                                                         "src":  "./assets/pack/accessories/39.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc35",
-                                                         "label":  "4",
-                                                         "src":  "./assets/pack/accessories/4.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc36",
-                                                         "label":  "40",
-                                                         "src":  "./assets/pack/accessories/40.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc37",
-                                                         "label":  "41",
-                                                         "src":  "./assets/pack/accessories/41.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc38",
-                                                         "label":  "42",
-                                                         "src":  "./assets/pack/accessories/42.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc39",
-                                                         "label":  "43",
-                                                         "src":  "./assets/pack/accessories/43.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc40",
-                                                         "label":  "44",
-                                                         "src":  "./assets/pack/accessories/44.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc41",
-                                                         "label":  "45",
-                                                         "src":  "./assets/pack/accessories/45.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc42",
-                                                         "label":  "46",
-                                                         "src":  "./assets/pack/accessories/46.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc43",
-                                                         "label":  "47",
-                                                         "src":  "./assets/pack/accessories/47.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc44",
-                                                         "label":  "48",
-                                                         "src":  "./assets/pack/accessories/48.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc45",
-                                                         "label":  "49",
-                                                         "src":  "./assets/pack/accessories/49.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc46",
-                                                         "label":  "5",
-                                                         "src":  "./assets/pack/accessories/5.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc47",
-                                                         "label":  "6",
-                                                         "src":  "./assets/pack/accessories/6.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc48",
-                                                         "label":  "7",
-                                                         "src":  "./assets/pack/accessories/7.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc49",
-                                                         "label":  "8",
-                                                         "src":  "./assets/pack/accessories/8.png"
-                                                     },
-                                                     {
-                                                         "id":  "acc50",
-                                                         "label":  "9",
-                                                         "src":  "./assets/pack/accessories/9.png"
-                                                     }
-                                                 ]
-                                 }
-                             ]
-                }
+    "character": {
+        "tabs": [
+            {
+                "id": "skinTone",
+                "label": "Skin Tone",
+                "type": "image",
+                "default": "tone_1",
+                "options": [
+                    {
+                        "id": "tone_1",
+                        "label": "1",
+                        "src": "./assets/bodypack/base/base_body_a.png"
+                    },
+                    {
+                        "id": "tone_2",
+                        "label": "2",
+                        "src": "./assets/bodypack/base/base_body_b.png"
+                    },
+                    {
+                        "id": "tone_3",
+                        "label": "3",
+                        "src": "./assets/bodypack/base/base_body_c.png"
+                    },
+                    {
+                        "id": "tone_4",
+                        "label": "4",
+                        "src": "./assets/bodypack/base/base_body_d.png"
+                    },
+                    {
+                        "id": "tone_5",
+                        "label": "5",
+                        "src": "./assets/bodypack/base/base_body_e.png"
+                    },
+                    {
+                        "id": "tone_6",
+                        "label": "6",
+                        "src": "./assets/bodypack/base/base_body_f.png"
+                    },
+                    {
+                        "id": "tone_7",
+                        "label": "7",
+                        "src": "./assets/bodypack/base/base_body_g.png"
+                    },
+                    {
+                        "id": "tone_8",
+                        "label": "8",
+                        "src": "./assets/bodypack/base/base_body_h.png"
+                    },
+                    {
+                        "id": "tone_9",
+                        "label": "9",
+                        "src": "./assets/bodypack/base/base_body_i.png"
+                    },
+                    {
+                        "id": "tone_10",
+                        "label": "10",
+                        "src": "./assets/bodypack/base/base_body_j.png"
+                    },
+                    {
+                        "id": "tone_11",
+                        "label": "11",
+                        "src": "./assets/bodypack/base/base_body_k.png"
+                    },
+                    {
+                        "id": "tone_12",
+                        "label": "12",
+                        "src": "./assets/bodypack/base/base_body_l.png"
+                    },
+                    {
+                        "id": "tone_13",
+                        "label": "13",
+                        "src": "./assets/bodypack/base/base_body_m.png"
+                    },
+                    {
+                        "id": "tone_14",
+                        "label": "14",
+                        "src": "./assets/bodypack/base/base_body_n.png"
+                    },
+                    {
+                        "id": "tone_15",
+                        "label": "15",
+                        "src": "./assets/bodypack/base/base_body_o.png"
+                    },
+                    {
+                        "id": "tone_16",
+                        "label": "16",
+                        "src": "./assets/bodypack/base/base_body_p.png"
+                    },
+                    {
+                        "id": "tone_17",
+                        "label": "17",
+                        "src": "./assets/bodypack/base/base_body_q.png"
+                    }
+                ]
+            },
+            {
+                "id": "ears",
+                "label": "Ears",
+                "type": "image",
+                "default": "ears1",
+                "options": [
+                    {
+                        "id": "ears1",
+                        "label": "1",
+                        "src": "./assets/features/ears/1.png"
+                    },
+                    {
+                        "id": "ears2",
+                        "label": "2",
+                        "src": "./assets/features/ears/2.png"
+                    },
+                    {
+                        "id": "ears3",
+                        "label": "3",
+                        "src": "./assets/features/ears/3.png"
+                    },
+                    {
+                        "id": "ears4",
+                        "label": "4",
+                        "src": "./assets/features/ears/4.png"
+                    },
+                    {
+                        "id": "ears5",
+                        "label": "5",
+                        "src": "./assets/features/ears/5.png"
+                    },
+                    {
+                        "id": "ears6",
+                        "label": "6",
+                        "src": "./assets/features/ears/6.png"
+                    },
+                    {
+                        "id": "ears7",
+                        "label": "7",
+                        "src": "./assets/features/ears/7.png"
+                    },
+                    {
+                        "id": "ears8",
+                        "label": "8",
+                        "src": "./assets/features/ears/8.png"
+                    }
+                ]
+            },
+            {
+                "id": "eyeColor",
+                "label": "Eye Color",
+                "type": "image",
+                "default": "pupils1a",
+                "options": [
+                    {
+                        "id": "pupils1a",
+                        "label": "1A",
+                        "src": "./assets/features/pupils/1a.png"
+                    },
+                    {
+                        "id": "pupils1b",
+                        "label": "1B",
+                        "src": "./assets/features/pupils/1b.png"
+                    },
+                    {
+                        "id": "pupils1c",
+                        "label": "1C",
+                        "src": "./assets/features/pupils/1c.png"
+                    },
+                    {
+                        "id": "pupils2a",
+                        "label": "2A",
+                        "src": "./assets/features/pupils/2a.png"
+                    },
+                    {
+                        "id": "pupils2b",
+                        "label": "2B",
+                        "src": "./assets/features/pupils/2b.png"
+                    },
+                    {
+                        "id": "pupils2c",
+                        "label": "2C",
+                        "src": "./assets/features/pupils/2c.png"
+                    },
+                    {
+                        "id": "pupils3a",
+                        "label": "3A",
+                        "src": "./assets/features/pupils/3a.png"
+                    },
+                    {
+                        "id": "pupils3b",
+                        "label": "3B",
+                        "src": "./assets/features/pupils/3b.png"
+                    },
+                    {
+                        "id": "pupils3c",
+                        "label": "3C",
+                        "src": "./assets/features/pupils/3c.png"
+                    },
+                    {
+                        "id": "pupils4a",
+                        "label": "4A",
+                        "src": "./assets/features/pupils/4a.png"
+                    },
+                    {
+                        "id": "pupils4b",
+                        "label": "4B",
+                        "src": "./assets/features/pupils/4b.png"
+                    },
+                    {
+                        "id": "pupils4c",
+                        "label": "4C",
+                        "src": "./assets/features/pupils/4c.png"
+                    },
+                    {
+                        "id": "pupils5a",
+                        "label": "5A",
+                        "src": "./assets/features/pupils/5a.png"
+                    },
+                    {
+                        "id": "pupils5b",
+                        "label": "5B",
+                        "src": "./assets/features/pupils/5b.png"
+                    },
+                    {
+                        "id": "pupils5c",
+                        "label": "5C",
+                        "src": "./assets/features/pupils/5c.png"
+                    }
+                ]
+            },
+            {
+                "id": "eyelashes",
+                "label": "Eyelashes",
+                "type": "image",
+                "default": "lashes1",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "lashes1",
+                        "label": "1",
+                        "src": "./assets/features/eyelashes/1.png"
+                    },
+                    {
+                        "id": "lashes2",
+                        "label": "2",
+                        "src": "./assets/features/eyelashes/2.png"
+                    },
+                    {
+                        "id": "lashes3",
+                        "label": "3",
+                        "src": "./assets/features/eyelashes/3.png"
+                    },
+                    {
+                        "id": "lashes4",
+                        "label": "4",
+                        "src": "./assets/features/eyelashes/4.png"
+                    },
+                    {
+                        "id": "lashes5",
+                        "label": "5",
+                        "src": "./assets/features/eyelashes/5.png"
+                    },
+                    {
+                        "id": "lashes6",
+                        "label": "6",
+                        "src": "./assets/features/eyelashes/6.png"
+                    },
+                    {
+                        "id": "lashes7",
+                        "label": "7",
+                        "src": "./assets/features/eyelashes/7.png"
+                    }
+                ]
+            },
+            {
+                "id": "eyebrows",
+                "label": "Eyebrows",
+                "type": "image",
+                "default": "brow1",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "brow1",
+                        "label": "1",
+                        "src": "./assets/features/eyebrows/1.png"
+                    },
+                    {
+                        "id": "brow2",
+                        "label": "10",
+                        "src": "./assets/features/eyebrows/10.png"
+                    },
+                    {
+                        "id": "brow3",
+                        "label": "2",
+                        "src": "./assets/features/eyebrows/2.png"
+                    },
+                    {
+                        "id": "brow4",
+                        "label": "3",
+                        "src": "./assets/features/eyebrows/3.png"
+                    },
+                    {
+                        "id": "brow5",
+                        "label": "4",
+                        "src": "./assets/features/eyebrows/4.png"
+                    },
+                    {
+                        "id": "brow6",
+                        "label": "5",
+                        "src": "./assets/features/eyebrows/5.png"
+                    },
+                    {
+                        "id": "brow7",
+                        "label": "6",
+                        "src": "./assets/features/eyebrows/6.png"
+                    },
+                    {
+                        "id": "brow8",
+                        "label": "7",
+                        "src": "./assets/features/eyebrows/7.png"
+                    },
+                    {
+                        "id": "brow9",
+                        "label": "8",
+                        "src": "./assets/features/eyebrows/8.png"
+                    },
+                    {
+                        "id": "brow10",
+                        "label": "9",
+                        "src": "./assets/features/eyebrows/9.png"
+                    }
+                ]
+            },
+            {
+                "id": "nose",
+                "label": "Nose",
+                "type": "image",
+                "default": "nose1",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "nose1",
+                        "label": "1",
+                        "src": "./assets/features/nose/1.png"
+                    },
+                    {
+                        "id": "nose2",
+                        "label": "2",
+                        "src": "./assets/features/nose/2.png"
+                    },
+                    {
+                        "id": "nose3",
+                        "label": "3",
+                        "src": "./assets/features/nose/3.png"
+                    },
+                    {
+                        "id": "nose4",
+                        "label": "4",
+                        "src": "./assets/features/nose/4.png"
+                    },
+                    {
+                        "id": "nose5",
+                        "label": "5",
+                        "src": "./assets/features/nose/5.png"
+                    },
+                    {
+                        "id": "nose6",
+                        "label": "6",
+                        "src": "./assets/features/nose/6.png"
+                    }
+                ]
+            },
+            {
+                "id": "mouth",
+                "label": "Mouth",
+                "type": "image",
+                "default": "mouth1",
+                "options": [
+                    {
+                        "id": "mouth1",
+                        "label": "1",
+                        "src": "./assets/features/mouth/1.png"
+                    },
+                    {
+                        "id": "mouth2",
+                        "label": "2",
+                        "src": "./assets/features/mouth/10.png"
+                    },
+                    {
+                        "id": "mouth3",
+                        "label": "3",
+                        "src": "./assets/features/mouth/11.png"
+                    },
+                    {
+                        "id": "mouth4",
+                        "label": "4",
+                        "src": "./assets/features/mouth/12.png"
+                    },
+                    {
+                        "id": "mouth5",
+                        "label": "5",
+                        "src": "./assets/features/mouth/13.png"
+                    },
+                    {
+                        "id": "mouth6",
+                        "label": "6",
+                        "src": "./assets/features/mouth/14.png"
+                    },
+                    {
+                        "id": "mouth7",
+                        "label": "7",
+                        "src": "./assets/features/mouth/2.png"
+                    },
+                    {
+                        "id": "mouth8",
+                        "label": "8",
+                        "src": "./assets/features/mouth/3.png"
+                    },
+                    {
+                        "id": "mouth9",
+                        "label": "9",
+                        "src": "./assets/features/mouth/4.png"
+                    },
+                    {
+                        "id": "mouth10",
+                        "label": "10",
+                        "src": "./assets/features/mouth/5.png"
+                    },
+                    {
+                        "id": "mouth11",
+                        "label": "11",
+                        "src": "./assets/features/mouth/6.png"
+                    },
+                    {
+                        "id": "mouth12",
+                        "label": "12",
+                        "src": "./assets/features/mouth/7.png"
+                    },
+                    {
+                        "id": "mouth13",
+                        "label": "13",
+                        "src": "./assets/features/mouth/8.png"
+                    },
+                    {
+                        "id": "mouth14",
+                        "label": "14",
+                        "src": "./assets/features/mouth/9.png"
+                    }
+                ]
+            },
+            {
+                "id": "faceDecor",
+                "label": "Face Decor",
+                "type": "image",
+                "default": "none",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "decor1",
+                        "label": "1",
+                        "src": "./assets/features/decor face/1.png"
+                    },
+                    {
+                        "id": "decor2",
+                        "label": "2",
+                        "src": "./assets/features/decor face/10.png"
+                    },
+                    {
+                        "id": "decor3",
+                        "label": "3",
+                        "src": "./assets/features/decor face/11.png"
+                    },
+                    {
+                        "id": "decor4",
+                        "label": "4",
+                        "src": "./assets/features/decor face/12.png"
+                    },
+                    {
+                        "id": "decor5",
+                        "label": "5",
+                        "src": "./assets/features/decor face/13.png"
+                    },
+                    {
+                        "id": "decor6",
+                        "label": "6",
+                        "src": "./assets/features/decor face/14.png"
+                    },
+                    {
+                        "id": "decor7",
+                        "label": "7",
+                        "src": "./assets/features/decor face/15.png"
+                    },
+                    {
+                        "id": "decor8",
+                        "label": "8",
+                        "src": "./assets/features/decor face/16.png"
+                    },
+                    {
+                        "id": "decor9",
+                        "label": "9",
+                        "src": "./assets/features/decor face/17.png"
+                    },
+                    {
+                        "id": "decor10",
+                        "label": "10",
+                        "src": "./assets/features/decor face/18.png"
+                    },
+                    {
+                        "id": "decor11",
+                        "label": "11",
+                        "src": "./assets/features/decor face/19.png"
+                    },
+                    {
+                        "id": "decor12",
+                        "label": "12",
+                        "src": "./assets/features/decor face/2.png"
+                    },
+                    {
+                        "id": "decor13",
+                        "label": "13",
+                        "src": "./assets/features/decor face/20.png"
+                    },
+                    {
+                        "id": "decor14",
+                        "label": "14",
+                        "src": "./assets/features/decor face/21.png"
+                    },
+                    {
+                        "id": "decor15",
+                        "label": "15",
+                        "src": "./assets/features/decor face/3.png"
+                    },
+                    {
+                        "id": "decor16",
+                        "label": "16",
+                        "src": "./assets/features/decor face/4.png"
+                    },
+                    {
+                        "id": "decor17",
+                        "label": "17",
+                        "src": "./assets/features/decor face/5.png"
+                    },
+                    {
+                        "id": "decor18",
+                        "label": "18",
+                        "src": "./assets/features/decor face/6.png"
+                    },
+                    {
+                        "id": "decor19",
+                        "label": "19",
+                        "src": "./assets/features/decor face/7.png"
+                    },
+                    {
+                        "id": "decor20",
+                        "label": "20",
+                        "src": "./assets/features/decor face/8.png"
+                    },
+                    {
+                        "id": "decor21",
+                        "label": "21",
+                        "src": "./assets/features/decor face/9.png"
+                    }
+                ]
+            },
+            {
+                "id": "hair",
+                "label": "Hair",
+                "type": "image",
+                "default": "none",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "hair1",
+                        "label": "1",
+                        "src": "./assets/feminine casual outfits/hair (combined)/1.webp"
+                    },
+                    {
+                        "id": "hair2",
+                        "label": "2",
+                        "src": "./assets/feminine casual outfits/hair (combined)/2.webp"
+                    },
+                    {
+                        "id": "hair3",
+                        "label": "3",
+                        "src": "./assets/feminine casual outfits/hair (combined)/3.webp"
+                    },
+                    {
+                        "id": "hair4",
+                        "label": "4",
+                        "src": "./assets/feminine casual outfits/hair (combined)/4.webp"
+                    },
+                    {
+                        "id": "hair5",
+                        "label": "5",
+                        "src": "./assets/feminine casual outfits/hair (combined)/5.webp"
+                    },
+                    {
+                        "id": "hair6",
+                        "label": "6",
+                        "src": "./assets/feminine casual outfits/hair (combined)/6.webp"
+                    },
+                    {
+                        "id": "hair7",
+                        "label": "7",
+                        "src": "./assets/feminine casual outfits/hair (combined)/7.webp"
+                    },
+                    {
+                        "id": "hair8",
+                        "label": "8",
+                        "src": "./assets/feminine casual outfits/hair (combined)/8.webp"
+                    },
+                    {
+                        "id": "hair9",
+                        "label": "9",
+                        "src": "./assets/feminine casual outfits/hair (combined)/9.webp"
+                    },
+                    {
+                        "id": "hair10",
+                        "label": "10",
+                        "src": "./assets/feminine casual outfits/hair (combined)/10.webp"
+                    }
+                ]
+            },
+            {
+                "id": "hairColor",
+                "label": "Hair Color",
+                "type": "color",
+                "default": "#5b3a22",
+                "options": [
+                    {
+                        "id": "brown",
+                        "label": "Brown",
+                        "color": "#5b3a22"
+                    },
+                    {
+                        "id": "black",
+                        "label": "Black",
+                        "color": "#1a1a1a"
+                    },
+                    {
+                        "id": "blonde",
+                        "label": "Blonde",
+                        "color": "#d4a574"
+                    },
+                    {
+                        "id": "red",
+                        "label": "Red",
+                        "color": "#8b2500"
+                    },
+                    {
+                        "id": "pink",
+                        "label": "Pink",
+                        "color": "#ff69b4"
+                    },
+                    {
+                        "id": "purple",
+                        "label": "Purple",
+                        "color": "#9370db"
+                    },
+                    {
+                        "id": "blue",
+                        "label": "Blue",
+                        "color": "#4169e1"
+                    },
+                    {
+                        "id": "green",
+                        "label": "Green",
+                        "color": "#228b22"
+                    },
+                    {
+                        "id": "white",
+                        "label": "White",
+                        "color": "#f8f8ff"
+                    },
+                    {
+                        "id": "gray",
+                        "label": "Gray",
+                        "color": "#808080"
+                    }
+                ]
+            },
+            {
+                "id": "bangs",
+                "label": "Bangs",
+                "type": "image",
+                "default": "none",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "bangs1",
+                        "label": "1",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/1.webp"
+                    },
+                    {
+                        "id": "bangs2",
+                        "label": "2",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/2.webp"
+                    },
+                    {
+                        "id": "bangs3",
+                        "label": "3",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/3.webp"
+                    },
+                    {
+                        "id": "bangs4",
+                        "label": "4",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/4.webp"
+                    },
+                    {
+                        "id": "bangs5",
+                        "label": "5",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/5.webp"
+                    },
+                    {
+                        "id": "bangs6",
+                        "label": "6",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/6.webp"
+                    },
+                    {
+                        "id": "bangs7",
+                        "label": "7",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/7.webp"
+                    },
+                    {
+                        "id": "bangs8",
+                        "label": "8",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/8.webp"
+                    },
+                    {
+                        "id": "bangs9",
+                        "label": "9",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/9.webp"
+                    },
+                    {
+                        "id": "bangs10",
+                        "label": "10",
+                        "src": "./assets/feminine casual outfits/hair (bangs)/10.webp"
+                    }
+                ]
+            }
+        ]
+    },
+    "dressup": {
+        "tabs": [
+            {
+                "id": "top",
+                "label": "Top",
+                "type": "imageOrNone",
+                "default": "none",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "top1",
+                        "label": "1",
+                        "src": "./assets/feminine casual outfits/top/1.webp"
+                    },
+                    {
+                        "id": "top2",
+                        "label": "2",
+                        "src": "./assets/feminine casual outfits/top/2.webp"
+                    },
+                    {
+                        "id": "top3",
+                        "label": "3",
+                        "src": "./assets/feminine casual outfits/top/3.webp"
+                    },
+                    {
+                        "id": "top4",
+                        "label": "4",
+                        "src": "./assets/feminine casual outfits/top/4.webp"
+                    },
+                    {
+                        "id": "top5",
+                        "label": "5",
+                        "src": "./assets/feminine casual outfits/top/5.webp"
+                    },
+                    {
+                        "id": "top6",
+                        "label": "6",
+                        "src": "./assets/feminine casual outfits/top/6.webp"
+                    },
+                    {
+                        "id": "top7",
+                        "label": "7",
+                        "src": "./assets/feminine casual outfits/top/7.webp"
+                    },
+                    {
+                        "id": "top8",
+                        "label": "8",
+                        "src": "./assets/feminine casual outfits/top/8.webp"
+                    },
+                    {
+                        "id": "top9",
+                        "label": "9",
+                        "src": "./assets/feminine casual outfits/top/9.webp"
+                    },
+                    {
+                        "id": "top10",
+                        "label": "10",
+                        "src": "./assets/feminine casual outfits/top/10.webp"
+                    },
+                    {
+                        "id": "top11",
+                        "label": "11",
+                        "src": "./assets/feminine casual outfits/top/11.webp"
+                    },
+                    {
+                        "id": "top12",
+                        "label": "12",
+                        "src": "./assets/feminine casual outfits/top/12.webp"
+                    },
+                    {
+                        "id": "top13",
+                        "label": "13",
+                        "src": "./assets/feminine casual outfits/top/13.webp"
+                    }
+                ]
+            },
+            {
+                "id": "bottom",
+                "label": "Bottom",
+                "type": "imageOrNone",
+                "default": "none",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "bottom1",
+                        "label": "1",
+                        "src": "./assets/feminine casual outfits/bottom/1.webp"
+                    },
+                    {
+                        "id": "bottom2",
+                        "label": "2",
+                        "src": "./assets/feminine casual outfits/bottom/2.webp"
+                    },
+                    {
+                        "id": "bottom3",
+                        "label": "3",
+                        "src": "./assets/feminine casual outfits/bottom/3.webp"
+                    },
+                    {
+                        "id": "bottom4",
+                        "label": "4",
+                        "src": "./assets/feminine casual outfits/bottom/4.webp"
+                    },
+                    {
+                        "id": "bottom5",
+                        "label": "5",
+                        "src": "./assets/feminine casual outfits/bottom/5.webp"
+                    },
+                    {
+                        "id": "bottom6",
+                        "label": "6",
+                        "src": "./assets/feminine casual outfits/bottom/6.webp"
+                    },
+                    {
+                        "id": "bottom7",
+                        "label": "7",
+                        "src": "./assets/feminine casual outfits/bottom/7.webp"
+                    }
+                ]
+            },
+            {
+                "id": "dress",
+                "label": "Dress",
+                "type": "imageOrNone",
+                "default": "dress1",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "dress1",
+                        "label": "1",
+                        "src": "./assets/feminine casual outfits/dress/1.webp"
+                    },
+                    {
+                        "id": "dress2",
+                        "label": "2",
+                        "src": "./assets/feminine casual outfits/dress/2.webp"
+                    },
+                    {
+                        "id": "dress3",
+                        "label": "3",
+                        "src": "./assets/feminine casual outfits/dress/3.webp"
+                    },
+                    {
+                        "id": "dress4",
+                        "label": "4",
+                        "src": "./assets/feminine casual outfits/dress/4.webp"
+                    },
+                    {
+                        "id": "dress5",
+                        "label": "5",
+                        "src": "./assets/feminine casual outfits/dress/5.webp"
+                    },
+                    {
+                        "id": "dress6",
+                        "label": "6",
+                        "src": "./assets/feminine casual outfits/dress/6.webp"
+                    },
+                    {
+                        "id": "dress7",
+                        "label": "7",
+                        "src": "./assets/feminine casual outfits/dress/7.webp"
+                    },
+                    {
+                        "id": "dress8",
+                        "label": "8",
+                        "src": "./assets/feminine casual outfits/dress/8.webp"
+                    },
+                    {
+                        "id": "dress9",
+                        "label": "9",
+                        "src": "./assets/feminine casual outfits/dress/9.webp"
+                    },
+                    {
+                        "id": "dress10",
+                        "label": "10",
+                        "src": "./assets/feminine casual outfits/dress/10.webp"
+                    }
+                ]
+            },
+            {
+                "id": "jacket",
+                "label": "Jacket",
+                "type": "imageOrNone",
+                "default": "jacket1",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "jacket1",
+                        "label": "1",
+                        "src": "./assets/feminine casual outfits/jacket/1.webp"
+                    },
+                    {
+                        "id": "jacket2",
+                        "label": "2",
+                        "src": "./assets/feminine casual outfits/jacket/2.webp"
+                    },
+                    {
+                        "id": "jacket3",
+                        "label": "3",
+                        "src": "./assets/feminine casual outfits/jacket/3.webp"
+                    },
+                    {
+                        "id": "jacket4",
+                        "label": "4",
+                        "src": "./assets/feminine casual outfits/jacket/4.webp"
+                    },
+                    {
+                        "id": "jacket5",
+                        "label": "5",
+                        "src": "./assets/feminine casual outfits/jacket/5.webp"
+                    },
+                    {
+                        "id": "jacket6",
+                        "label": "6",
+                        "src": "./assets/feminine casual outfits/jacket/6.webp"
+                    },
+                    {
+                        "id": "jacket7",
+                        "label": "7",
+                        "src": "./assets/feminine casual outfits/jacket/7.webp"
+                    },
+                    {
+                        "id": "jacket8",
+                        "label": "8",
+                        "src": "./assets/feminine casual outfits/jacket/8.webp"
+                    },
+                    {
+                        "id": "jacket9",
+                        "label": "9",
+                        "src": "./assets/feminine casual outfits/jacket/9.webp"
+                    },
+                    {
+                        "id": "jacket10",
+                        "label": "10",
+                        "src": "./assets/feminine casual outfits/jacket/10.webp"
+                    }
+                ]
+            },
+            {
+                "id": "shoes",
+                "label": "Shoes",
+                "type": "imageOrNone",
+                "default": "none",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "shoes1",
+                        "label": "1",
+                        "src": "./assets/feminine casual outfits/shoes/1.webp"
+                    },
+                    {
+                        "id": "shoes2",
+                        "label": "2",
+                        "src": "./assets/feminine casual outfits/shoes/2.webp"
+                    },
+                    {
+                        "id": "shoes3",
+                        "label": "3",
+                        "src": "./assets/feminine casual outfits/shoes/3.webp"
+                    },
+                    {
+                        "id": "shoes4",
+                        "label": "4",
+                        "src": "./assets/feminine casual outfits/shoes/4.webp"
+                    },
+                    {
+                        "id": "shoes5",
+                        "label": "5",
+                        "src": "./assets/feminine casual outfits/shoes/5.webp"
+                    },
+                    {
+                        "id": "shoes6",
+                        "label": "6",
+                        "src": "./assets/feminine casual outfits/shoes/6.webp"
+                    },
+                    {
+                        "id": "shoes7",
+                        "label": "7",
+                        "src": "./assets/feminine casual outfits/shoes/7.webp"
+                    },
+                    {
+                        "id": "shoes8",
+                        "label": "8",
+                        "src": "./assets/feminine casual outfits/shoes/8.webp"
+                    },
+                    {
+                        "id": "shoes9",
+                        "label": "9",
+                        "src": "./assets/feminine casual outfits/shoes/9.webp"
+                    },
+                    {
+                        "id": "shoes10",
+                        "label": "10",
+                        "src": "./assets/feminine casual outfits/shoes/10.webp"
+                    }
+                ]
+            },
+            {
+                "id": "accessory",
+                "label": "Accessories",
+                "type": "imageOrNone",
+                "default": "none",
+                "options": [
+                    {
+                        "id": "none",
+                        "label": "None",
+                        "src": null
+                    },
+                    {
+                        "id": "accessory1",
+                        "label": "ankle bracelet",
+                        "src": "./assets/feminine casual outfits/jewelery/ankle bracelet.webp"
+                    },
+                    {
+                        "id": "accessory2",
+                        "label": "bracelet",
+                        "src": "./assets/feminine casual outfits/jewelery/bracelet.webp"
+                    },
+                    {
+                        "id": "accessory3",
+                        "label": "bracelets",
+                        "src": "./assets/feminine casual outfits/jewelery/bracelets.webp"
+                    },
+                    {
+                        "id": "accessory4",
+                        "label": "ear rings",
+                        "src": "./assets/feminine casual outfits/jewelery/ear rings.webp"
+                    },
+                    {
+                        "id": "accessory5",
+                        "label": "long necklace",
+                        "src": "./assets/feminine casual outfits/jewelery/long necklace.webp"
+                    },
+                    {
+                        "id": "accessory6",
+                        "label": "pearls ears",
+                        "src": "./assets/feminine casual outfits/jewelery/pearls ears.webp"
+                    },
+                    {
+                        "id": "accessory7",
+                        "label": "pearls necklace",
+                        "src": "./assets/feminine casual outfits/jewelery/pearls necklace.webp"
+                    },
+                    {
+                        "id": "accessory8",
+                        "label": "ring",
+                        "src": "./assets/feminine casual outfits/jewelery/ring.webp"
+                    },
+                    {
+                        "id": "accessory9",
+                        "label": "small necklace",
+                        "src": "./assets/feminine casual outfits/jewelery/small necklace.webp"
+                    },
+                    {
+                        "id": "accessory10",
+                        "label": "watch",
+                        "src": "./assets/feminine casual outfits/jewelery/watch.webp"
+                    }
+                ]
+            }
+        ]
+    }
 }
