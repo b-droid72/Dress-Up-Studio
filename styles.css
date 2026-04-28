@@ -22,9 +22,11 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -32,7 +34,12 @@ body {
   font-family: 'Quicksand', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
     "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
-  background: radial-gradient(1200px 600px at 15% 15%, #ffffff 0%, var(--bg) 52%, #ccecff 100%);
+  background-color: var(--bg);
+  background-image: url("./favicon.png");
+  background-repeat: repeat;
+  background-size: 60px 60px;
+  background-position: 0 0;
+  position: relative;
 }
 
 .app {
@@ -40,8 +47,8 @@ body {
   margin: 0 auto;
   padding: 18px 16px 24px;
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   gap: 16px;
 }
 
@@ -404,28 +411,109 @@ p {
   color: var(--muted);
 }
 
-.modal {
-  display: none;
+/* Final attempt - simple viewport positioning */
+.testModal {
   position: fixed;
-  z-index: 1000;
-  left: 0;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  z-index: 99999;
+  display: none;
+  width: auto;
+  height: auto;
+}
+
+.testModal.show {
+  display: block;
+}
+
+.modal {
+  position: fixed;
   top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 9999;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modalContent {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  display: none;
+}
+
+.modal.show .modalContent {
+  display: block;
 }
 
 .modalContent {
   background-color: white;
-  margin: 15% auto;
-  padding: 20px;
-  border-radius: var(--radius2);
-  width: 300px;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
   text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  animation: modalBoxFadeIn 0.3s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.testModalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  z-index: 100000;
+  margin: 0;
+}
+
+@keyframes modalBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalBoxFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .modalContent h3 {
   margin-bottom: 16px;
+  color: var(--text);
+}
+
+.modalContent p {
+  margin-bottom: 16px;
+  color: var(--muted);
 }
 
 .modalContent input {
@@ -434,6 +522,7 @@ p {
   margin-bottom: 16px;
   border: 1px solid var(--border);
   border-radius: 8px;
+  font-family: inherit;
 }
 
 .modalContent button {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dress-Up Studio</title>
+    <link rel="icon" type="image/png" href="./favicon.png" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -18,6 +19,7 @@
         </div>
         <div class="topbarActions">
           <button class="btn ghost" id="homeBtn" type="button">Home</button>
+          <button class="btn primary" id="testModalBtn" type="button">Test Modal</button>
         </div>
       </header>
 
@@ -158,11 +160,18 @@
       </footer>
     </main>
 
+    <!-- Test modal with inline styles -->
+    <div id="testModal" class="testModal" style="position: fixed; top: 50vh; left: 50vw; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 99999; display: none;">
+      <h3>Test Modal</h3>
+      <p>This should appear in the center!</p>
+      <button class="btn primary" id="closeTestModal">Close</button>
+    </div>
+
     <!-- Modal for naming character -->
-    <div id="nameModal" class="modal">
-      <div class="modalContent">
+    <div id="nameModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
+      <div style="position: fixed; top: 50vh; left: 50vw; transform: translate(-50%, -50%); background-color: white; padding: 30px; border-radius: 12px; width: 350px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); z-index: 10000; border: 1px solid rgba(0, 0, 0, 0.1);">
         <h3>Name your character</h3>
-        <input type="text" id="characterNameInput" placeholder="Enter name..." maxlength="30">
+        <input type="text" id="characterNameInput" placeholder="Enter name..." maxlength="30" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid rgba(12, 33, 48, 0.12); border-radius: 8px; font-family: inherit;">
         <div>
           <button class="btn primary" id="saveNameBtn" type="button">Save</button>
           <button class="btn ghost" id="cancelNameBtn" type="button">Cancel</button>
@@ -171,10 +180,10 @@
     </div>
 
     <!-- Modal for restart confirmation -->
-    <div id="restartModal" class="modal">
-      <div class="modalContent">
+    <div id="restartModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
+      <div style="position: fixed; top: 50vh; left: 50vw; transform: translate(-50%, -50%); background-color: white; padding: 30px; border-radius: 12px; width: 350px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); z-index: 10000; border: 1px solid rgba(0, 0, 0, 0.1);">
         <h3>Are you sure you want to restart?</h3>
-        <p>All progress will be lost.</p>
+        <p style="margin-bottom: 16px; color: rgba(12, 33, 48, 0.65);">All progress will be lost.</p>
         <div>
           <button class="btn primary" id="confirmRestartBtn" type="button">Yes, Restart</button>
           <button class="btn ghost" id="cancelRestartBtn" type="button">Cancel</button>
@@ -185,4 +194,3 @@
     <script type="module" src="./app.js"></script>
   </body>
 </html>
-

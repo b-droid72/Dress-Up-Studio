@@ -95,54 +95,6 @@
                 ]
             },
             {
-                "id": "ears",
-                "label": "Ears",
-                "type": "image",
-                "default": "ears1",
-                "options": [
-                    {
-                        "id": "ears1",
-                        "label": "1",
-                        "src": "./assets/features/ears/1.png"
-                    },
-                    {
-                        "id": "ears2",
-                        "label": "2",
-                        "src": "./assets/features/ears/2.png"
-                    },
-                    {
-                        "id": "ears3",
-                        "label": "3",
-                        "src": "./assets/features/ears/3.png"
-                    },
-                    {
-                        "id": "ears4",
-                        "label": "4",
-                        "src": "./assets/features/ears/4.png"
-                    },
-                    {
-                        "id": "ears5",
-                        "label": "5",
-                        "src": "./assets/features/ears/5.png"
-                    },
-                    {
-                        "id": "ears6",
-                        "label": "6",
-                        "src": "./assets/features/ears/6.png"
-                    },
-                    {
-                        "id": "ears7",
-                        "label": "7",
-                        "src": "./assets/features/ears/7.png"
-                    },
-                    {
-                        "id": "ears8",
-                        "label": "8",
-                        "src": "./assets/features/ears/8.png"
-                    }
-                ]
-            },
-            {
                 "id": "eyeColor",
                 "label": "Eye Color",
                 "type": "image",

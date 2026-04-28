@@ -29,7 +29,6 @@ const state = {
   },
   character: {
     skinTone: "tone_1",
-    ears: "ears1",
     eyeColor: "pupils1a",
     mouth: "mouth1",
     hair: "none",
@@ -42,7 +41,8 @@ const state = {
   ui: {
     characterTab: "skinTone",
     dressupTab: "top"
-  }
+  },
+  justRestarted: false
 };
 
 let optionsData = null;
@@ -256,12 +256,20 @@ function renderLayerStack(rootEl) {
     for (const src of layerSrcs) {
       const img = makeImg(tab.id, src);
       if (!img) continue;
-      if (tab.id === "ears" || tab.id === "eyeColor") {
+      if (tab.id === "eyeColor") {
         const skinOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
         applyColorTint(img, skinOpt?.color ?? null);
       }
       rootEl.appendChild(img);
     }
+  }
+
+  // Always render ears #1 with skin tone matching
+  const earsImg = makeImg("ears", "./assets/features/ears/1.png");
+  if (earsImg) {
+    const skinOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
+    applyColorTint(earsImg, skinOpt?.color ?? null);
+    rootEl.appendChild(earsImg);
   }
 
   const orderedDressupTabs = sortTabsByLayerOrder(
@@ -435,8 +443,44 @@ function resetOutfit() {
   renderPreview();
 }
 
+function clearWardrobe() {
+  state.wardrobe = [];
+  state.justRestarted = true; // Set flag to prevent reloading
+  localStorage.removeItem("dressupWardrobe");
+  // Show success message
+  const successMsg = document.createElement("div");
+  successMsg.textContent = "Wardrobe cleared!";
+  successMsg.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1001;
+  `;
+  document.body.appendChild(successMsg);
+  setTimeout(() => document.body.removeChild(successMsg), 2000);
+}
+
 function initEvents() {
+  // Ensure modals are hidden on page load
+  qs("#nameModal").classList.remove("show");
+  qs("#restartModal").classList.remove("show");
+  
   qs("#homeBtn").addEventListener("click", () => setScreen("start"));
+  qs("#testModalBtn").addEventListener("click", () => {
+    qs("#testModal").style.display = "block";
+    qs("#testModal").style.position = "fixed";
+    qs("#testModal").style.top = "50vh";
+    qs("#testModal").style.left = "50vw";
+    qs("#testModal").style.transform = "translate(-50%, -50%)";
+    qs("#testModal").style.zIndex = "99999";
+  });
+  qs("#closeTestModal").addEventListener("click", () => {
+    qs("#testModal").style.display = "none";
+  });
 
   qs("#playBtn").addEventListener("click", () => {
     setScreen("character");
@@ -469,6 +513,7 @@ function initEvents() {
     qs("#restartModal").style.display = "none";
     resetCharacter();
     resetOutfit();
+    clearWardrobe(); // Clear wardrobe on restart
     setScreen("start");
   });
   qs("#cancelRestartBtn").addEventListener("click", () => {
@@ -712,11 +757,14 @@ async function init() {
   optionIndex = buildOptionIndex(optionsData);
   await preloadHairSvgTemplates();
 
-  // Load wardrobe from localStorage
-  const savedWardrobe = localStorage.getItem("dressupWardrobe");
-  if (savedWardrobe) {
-    state.wardrobe = JSON.parse(savedWardrobe);
+  // Load wardrobe from localStorage only if not just restarted
+  if (!state.justRestarted) {
+    const savedWardrobe = localStorage.getItem("dressupWardrobe");
+    if (savedWardrobe) {
+      state.wardrobe = JSON.parse(savedWardrobe);
+    }
   }
+  state.justRestarted = false; // Reset flag
 
   applyDefaultsFromOptions();
   initEvents();
