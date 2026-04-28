@@ -1,14 +1,15 @@
 const SCREENS = ["start", "settings", "character", "dressup", "finished"];
 const CHARACTER_LAYER_ORDER = [
+  "hair",
   "ears",
   "eyes",
   "pupils",
   "eyelashes",
   "eyebrows",
+  "bangs",
   "nose",
   "mouth",
-  "faceDecor",
-  "hair"
+  "faceDecor"
 ];
 const DRESSUP_LAYER_ORDER = ["top", "bottom", "dress", "socks", "shoes", "jacket", "accessory"];
 
@@ -28,12 +29,12 @@ const state = {
     sound: false
   },
   character: {
-    skinTone: "tone1",
+    skinTone: "tone_a",
+    skinTexture: "base",
     eyes: "eyes1",
     eyeColor: "blue",
     mouth: "mouth1",
-    hair: "hair1",
-    hairColor: "brown"
+    hair: "hair1"
   },
   outfit: {},
   ui: {
@@ -44,6 +45,7 @@ const state = {
 
 let optionsData = null;
 let optionIndex = null;
+const hairSvgTemplates = new Map();
 
 function sortTabsByLayerOrder(tabs, preferredOrder) {
   const rank = new Map(preferredOrder.map((id, idx) => [id, idx]));
@@ -104,6 +106,14 @@ function resolveCharacterLayerSrc(key) {
   return opt?.src ?? null;
 }
 
+function resolveCharacterLayerSrcs(key) {
+  const valueId = state.character[key];
+  const opt = optionIndex?.character?.[key]?.[valueId];
+  if (!opt) return [];
+  if (Array.isArray(opt.srcLayers)) return opt.srcLayers.filter(Boolean);
+  return opt.src ? [opt.src] : [];
+}
+
 function resolveOutfitLayerSrc(key) {
   const valueId = state.outfit[key];
   const opt = optionIndex?.dressup?.[key]?.[valueId];
@@ -119,12 +129,72 @@ function applyColorTint(imgEl, tintColor) {
   imgEl.style.filter = `drop-shadow(0 0 0 ${tintColor})`;
 }
 
+function resolveBodySrc() {
+  const skinToneOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
+  const baseSrc = skinToneOpt?.src ?? LAYERS.base.body.src;
+  if (!baseSrc) return null;
+  const textureId = state.character.skinTexture ?? "base";
+  if (textureId === "base") return baseSrc;
+  const match = baseSrc.match(/base_body_([a-z]+)\.png$/i);
+  if (!match) return baseSrc;
+  const suffix = match[1];
+  if (textureId === "snake") return `./assets/bodypack/snake/snake_body_${suffix}.png`;
+  if (textureId === "bubbles") return `./assets/bodypack/bubbles/bubbles_body_${suffix}.png`;
+  return baseSrc;
+}
+
+async function preloadHairSvgTemplates() {
+  hairSvgTemplates.clear();
+  const hairTab = optionsData?.character?.tabs?.find((tab) => tab.id === "hair");
+  if (!hairTab) return;
+
+  const loads = hairTab.options
+    .filter((opt) => typeof opt.src === "string" && opt.src.toLowerCase().endsWith(".svg"))
+    .map(async (opt) => {
+      try {
+        const res = await fetch(opt.src);
+        if (!res.ok) return;
+        const svgText = await res.text();
+        hairSvgTemplates.set(opt.id, svgText);
+      } catch (_err) {
+        // Keep rendering resilient; missing templates fall back to regular <img>.
+      }
+    });
+
+  await Promise.all(loads);
+}
+
+function makeHairSvgLayer(hairId, hairColor) {
+  const template = hairSvgTemplates.get(hairId);
+  if (!template) return null;
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(template, "image/svg+xml");
+  const svg = doc.documentElement;
+  if (!svg || svg.nodeName.toLowerCase() !== "svg") return null;
+
+  const tone = hairColor && /^#[0-9a-fA-F]{6}$/.test(hairColor) ? hairColor : "#5b3a22";
+  svg.querySelectorAll("[fill]").forEach((node) => {
+    const current = node.getAttribute("fill");
+    if (!current || current === "none" || current === "transparent") return;
+    if (current.toLowerCase() === "#5b3a22") {
+      node.setAttribute("fill", tone);
+    }
+  });
+
+  svg.classList.add("layerSvg", "layer--hair");
+  svg.setAttribute("aria-hidden", "true");
+  return svg;
+}
+
 function renderLayerStack(rootEl) {
   rootEl.innerHTML = "";
 
   const makeImg = (id, src) => {
     if (!src) return null;
     const img = document.createElement("img");
+    img.className = "layerImg";
+    img.classList.add(`layer--${id}`);
     img.alt = "";
     img.draggable = false;
     img.decoding = "async";
@@ -134,32 +204,37 @@ function renderLayerStack(rootEl) {
     return img;
   };
 
-  const body = makeImg(LAYERS.base.body.id, LAYERS.base.body.src);
-  if (body) {
-    rootEl.appendChild(body);
-    const skinOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
-    applyColorTint(body, skinOpt?.color ?? null);
-  }
+  const body = makeImg(LAYERS.base.body.id, resolveBodySrc());
+  if (body) rootEl.appendChild(body);
 
   const orderedCharacterTabs = sortTabsByLayerOrder(
     optionsData?.character?.tabs ?? [],
     CHARACTER_LAYER_ORDER
   );
   for (const tab of orderedCharacterTabs) {
+    if (tab.id === "skinTone" || tab.id === "skinTexture") continue;
     // Only image-based tabs become visual layers.
     const hasImageOption = tab.options?.some((opt) => Object.prototype.hasOwnProperty.call(opt, "src"));
     if (!hasImageOption) continue;
-    const img = makeImg(tab.id, resolveCharacterLayerSrc(tab.id));
-    if (!img) continue;
-    if (tab.id === "eyes") {
-      const eyeColorOpt = optionIndex?.character?.eyeColor?.[state.character.eyeColor];
-      applyColorTint(img, eyeColorOpt?.color ?? null);
-    }
     if (tab.id === "hair") {
-      const hairColorOpt = optionIndex?.character?.hairColor?.[state.character.hairColor];
-      applyColorTint(img, hairColorOpt?.color ?? null);
+      const hairSvg = makeHairSvgLayer(state.character.hair, null);
+      if (hairSvg) {
+        rootEl.appendChild(hairSvg);
+        continue;
+      }
     }
-    rootEl.appendChild(img);
+
+    const layerSrcs = resolveCharacterLayerSrcs(tab.id);
+    if (!layerSrcs.length) continue;
+    for (const src of layerSrcs) {
+      const img = makeImg(tab.id, src);
+      if (!img) continue;
+      if (tab.id === "eyes") {
+        const eyeColorOpt = optionIndex?.character?.eyeColor?.[state.character.eyeColor];
+        applyColorTint(img, eyeColorOpt?.color ?? null);
+      }
+      rootEl.appendChild(img);
+    }
   }
 
   const orderedDressupTabs = sortTabsByLayerOrder(
@@ -373,6 +448,7 @@ async function init() {
   const res = await fetch("./data/options.json");
   optionsData = await res.json();
   optionIndex = buildOptionIndex(optionsData);
+  await preloadHairSvgTemplates();
 
   applyDefaultsFromOptions();
   initEvents();
