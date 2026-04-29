@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <!-- Background music -->
+    <audio id="backgroundMusic" loop>
+      <source src="./assets/audio/style savvy.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Button sound effects -->
+    <audio id="buttonSound" preload="auto">
+      <source src="./assets/audio/Button Click - Sound Effect.mp3" type="audio/mpeg">
+    </audio>
+    
     <main class="app" id="appRoot">
       <header class="topbar">
         <div class="brand">
@@ -19,7 +29,6 @@
         </div>
         <div class="topbarActions">
           <button class="btn ghost" id="homeBtn" type="button">Home</button>
-          <button class="btn primary" id="testModalBtn" type="button">Test Modal</button>
         </div>
       </header>
 
@@ -160,13 +169,6 @@
       </footer>
     </main>
 
-    <!-- Test modal with inline styles -->
-    <div id="testModal" class="testModal" style="position: fixed; top: 50vh; left: 50vw; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 99999; display: none;">
-      <h3>Test Modal</h3>
-      <p>This should appear in the center!</p>
-      <button class="btn primary" id="closeTestModal">Close</button>
-    </div>
-
     <!-- Modal for naming character -->
     <div id="nameModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
       <div style="position: fixed; top: 50vh; left: 50vw; transform: translate(-50%, -50%); background-color: white; padding: 30px; border-radius: 12px; width: 350px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); z-index: 10000; border: 1px solid rgba(0, 0, 0, 0.1);">
@@ -179,6 +181,7 @@
       </div>
     </div>
 
+    
     <!-- Modal for restart confirmation -->
     <div id="restartModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
       <div style="position: fixed; top: 50vh; left: 50vw; transform: translate(-50%, -50%); background-color: white; padding: 30px; border-radius: 12px; width: 350px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); z-index: 10000; border: 1px solid rgba(0, 0, 0, 0.1);">

@@ -591,64 +591,6 @@
                 ]
             },
             {
-                "id": "hairColor",
-                "label": "Hair Color",
-                "type": "color",
-                "default": "#5b3a22",
-                "options": [
-                    {
-                        "id": "brown",
-                        "label": "Brown",
-                        "color": "#5b3a22"
-                    },
-                    {
-                        "id": "black",
-                        "label": "Black",
-                        "color": "#1a1a1a"
-                    },
-                    {
-                        "id": "blonde",
-                        "label": "Blonde",
-                        "color": "#d4a574"
-                    },
-                    {
-                        "id": "red",
-                        "label": "Red",
-                        "color": "#8b2500"
-                    },
-                    {
-                        "id": "pink",
-                        "label": "Pink",
-                        "color": "#ff69b4"
-                    },
-                    {
-                        "id": "purple",
-                        "label": "Purple",
-                        "color": "#9370db"
-                    },
-                    {
-                        "id": "blue",
-                        "label": "Blue",
-                        "color": "#4169e1"
-                    },
-                    {
-                        "id": "green",
-                        "label": "Green",
-                        "color": "#228b22"
-                    },
-                    {
-                        "id": "white",
-                        "label": "White",
-                        "color": "#f8f8ff"
-                    },
-                    {
-                        "id": "gray",
-                        "label": "Gray",
-                        "color": "#808080"
-                    }
-                ]
-            },
-            {
                 "id": "bangs",
                 "label": "Bangs",
                 "type": "image",

@@ -1,7 +1,6 @@
 const SCREENS = ["start", "settings", "character", "dressup", "wardrobe", "finished"];
 const CHARACTER_LAYER_ORDER = [
   "faceDecor",
-  "ears",
   "eyeColor",
   "eyelashes",
   "eyebrows",
@@ -25,7 +24,7 @@ const state = {
   screen: "start",
   settings: {
     music: false,
-    sound: false
+    sound: true
   },
   character: {
     skinTone: "tone_1",
@@ -33,8 +32,7 @@ const state = {
     mouth: "mouth1",
     hair: "none",
     eyelashes: "lashes1",
-    faceDecor: "none",
-    hairColor: "#5b3a22"
+    faceDecor: "none"
   },
   outfit: {},
   wardrobe: [],
@@ -42,7 +40,11 @@ const state = {
     characterTab: "skinTone",
     dressupTab: "top"
   },
-  justRestarted: false
+  justRestarted: false,
+  zoom: {
+    character: 1.0,
+    dressup: 1.0
+  }
 };
 
 let optionsData = null;
@@ -129,7 +131,7 @@ function applyColorTint(imgEl, tintColor) {
     imgEl.style.filter = "";
     return;
   }
-  // Keep this simple: use CSS drop-shadow tinting. Works well enough for SVG placeholders.
+  // Apply color tinting to SVG elements
   imgEl.style.filter = `drop-shadow(0 0 0 ${tintColor})`;
 }
 
@@ -235,13 +237,14 @@ function renderLayerStack(rootEl) {
     applyColorTint(body, skinOpt?.color ?? null);
   }
 
-  // Always render underwear first
-  const underwearSrcs = ["./assets/clothes/underwear/bra.webp", "./assets/clothes/underwear/slip.webp"];
-  for (const src of underwearSrcs) {
-    const underwear = makeImg("underwear", src);
-    if (underwear) rootEl.appendChild(underwear);
-  }
+  // Always render underwear as default base layer
+  const bra = makeImg("underwear-top", "./assets/bodypack/underwear/top/bra.webp");
+  if (bra) rootEl.appendChild(bra);
+  
+  const slip = makeImg("underwear-bottom", "./assets/bodypack/underwear/bottom/slip.webp");
+  if (slip) rootEl.appendChild(slip);
 
+  // Render character layers in order
   const orderedCharacterTabs = sortTabsByLayerOrder(
     optionsData?.character?.tabs ?? [],
     CHARACTER_LAYER_ORDER
@@ -264,14 +267,7 @@ function renderLayerStack(rootEl) {
     }
   }
 
-  // Always render ears #1 with skin tone matching
-  const earsImg = makeImg("ears", "./assets/features/ears/1.png");
-  if (earsImg) {
-    const skinOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
-    applyColorTint(earsImg, skinOpt?.color ?? null);
-    rootEl.appendChild(earsImg);
-  }
-
+  
   const orderedDressupTabs = sortTabsByLayerOrder(
     optionsData?.dressup?.tabs ?? [],
     DRESSUP_LAYER_ORDER
@@ -286,10 +282,52 @@ function renderLayerStack(rootEl) {
   }
 }
 
+function updatePreviewZoom() {
+  const currentScreen = state.screen;
+  const zoomLevel = state.zoom[currentScreen];
+  const previewStack = currentScreen === "dressup" ? 
+    qs("#previewStackDressup") : qs("#previewStack");
+  
+  if (previewStack) {
+    previewStack.style.transform = `scale(${zoomLevel})`;
+    previewStack.style.transformOrigin = "center center";
+  }
+}
+
 function renderPreview() {
-  renderLayerStack(qs("#previewStack"));
-  renderLayerStack(qs("#previewStackDressup"));
-  renderLayerStack(qs("#previewStackFinished"));
+  // Auto-set zoom based on current screen
+  if (state.screen === "character") {
+    state.zoom.character = 3.5; // Always zoom to face on character screen
+  } else if (state.screen === "dressup") {
+    state.zoom.dressup = 1.0; // Always full body on dressup screen
+  }
+  
+  const characterZoom = state.zoom.character;
+  const dressupZoom = state.zoom.dressup;
+  
+  // Render character preview
+  const characterPreview = qs("#previewStack");
+  if (characterPreview) {
+    renderLayerStack(characterPreview);
+    characterPreview.style.transform = `scale(${characterZoom})`;
+    characterPreview.style.transformOrigin = "center 15%"; // Focus between center and top
+  }
+  
+  // Render dressup preview
+  const dressupPreview = qs("#previewStackDressup");
+  if (dressupPreview) {
+    renderLayerStack(dressupPreview);
+    dressupPreview.style.transform = `scale(${dressupZoom})`;
+    dressupPreview.style.transformOrigin = "center center";
+  }
+  
+  // Render finished preview
+  const finishedPreview = qs("#previewStackFinished");
+  if (finishedPreview) {
+    renderLayerStack(finishedPreview);
+    finishedPreview.style.transform = `scale(${dressupZoom})`;
+    finishedPreview.style.transformOrigin = "center center";
+  }
 }
 
 function setCharacterValue(key, optId) {
@@ -407,8 +445,26 @@ function renderCharacterControls() {
   renderTabs(qs("#characterCategoryTabs"), optionsData.character.tabs, state.ui.characterTab, (id) => {
     state.ui.characterTab = id;
     renderCharacterTabContent();
+    updateTopBarShadow(); // Update shadow based on selection
   });
   renderCharacterTabContent();
+}
+
+function updateTopBarShadow() {
+  const activeTab = optionsData.character.tabs.find((t) => t.id === state.ui.characterTab);
+  if (activeTab && activeTab.label) {
+    // Create shadow color based on tab label
+    const shadowColor = `rgba(${[79, 176, 255, 0.18].join(',')})`;
+    const borderColor = `rgba(${[42, 144, 255, 0.35].join(',')})`;
+    
+    // Update CSS variables
+    document.documentElement.style.setProperty('--selected-shadow', shadowColor);
+    document.documentElement.style.setProperty('--selected-border', borderColor);
+  } else {
+    // Reset to default
+    document.documentElement.style.setProperty('--selected-shadow', 'rgba(79, 176, 255, 0.18)');
+    document.documentElement.style.setProperty('--selected-border', 'rgba(42, 144, 255, 0.35)');
+  }
 }
 
 function renderDressupControls() {
@@ -470,21 +526,12 @@ function initEvents() {
   qs("#restartModal").classList.remove("show");
   
   qs("#homeBtn").addEventListener("click", () => setScreen("start"));
-  qs("#testModalBtn").addEventListener("click", () => {
-    qs("#testModal").style.display = "block";
-    qs("#testModal").style.position = "fixed";
-    qs("#testModal").style.top = "50vh";
-    qs("#testModal").style.left = "50vw";
-    qs("#testModal").style.transform = "translate(-50%, -50%)";
-    qs("#testModal").style.zIndex = "99999";
-  });
-  qs("#closeTestModal").addEventListener("click", () => {
-    qs("#testModal").style.display = "none";
-  });
 
+  
   qs("#playBtn").addEventListener("click", () => {
     setScreen("character");
-    renderPreview();
+    renderPreview(); // renderPreview will auto-set zoom to 3.5
+    playButtonSound(); // Play sound on button press
   });
   qs("#settingsBtn").addEventListener("click", () => setScreen("settings"));
   qs("#settingsBackBtn").addEventListener("click", () => setScreen("start"));
@@ -495,16 +542,74 @@ function initEvents() {
       state.settings[key] = !state.settings[key];
       btn.setAttribute("aria-pressed", String(state.settings[key]));
       btn.textContent = state.settings[key] ? "On" : "Off";
+      
+      // Handle audio
+      if (key === "music") {
+        const music = qs("#backgroundMusic");
+        if (state.settings.music) {
+          music.play().catch(e => console.log("Music play failed:", e));
+        } else {
+          music.pause();
+          music.currentTime = 0; // Reset to beginning when turned off
+        }
+      }
+      
+      if (key === "sound") {
+        playButtonSound();
+      }
     });
+    
+    // Initialize button state on page load
+    btn.setAttribute("aria-pressed", String(state.settings[key]));
+    btn.textContent = state.settings[key] ? "On" : "Off";
   };
+
+  const playButtonSound = () => {
+    console.log("playButtonSound called, sound enabled:", state.settings.sound);
+    if (state.settings.sound) {
+      const sound = qs("#buttonSound");
+      if (!sound) {
+        console.error("Button sound element not found!");
+        return;
+      }
+      
+      console.log("Playing button sound...");
+      sound.currentTime = 0;
+      sound.play().then(() => {
+        console.log("Button sound played successfully");
+      }).catch(e => {
+        console.error("Sound play failed:", e);
+      });
+      
+      // Stop sound after 2 seconds
+      setTimeout(() => {
+        sound.pause();
+        sound.currentTime = 0;
+        console.log("Button sound stopped after 2 seconds");
+      }, 2000);
+    } else {
+      console.log("Sound is disabled, not playing");
+    }
+  };
+
   toggle("music", "#toggleMusicBtn");
   toggle("sound", "#toggleSoundBtn");
 
   qs("#characterBackBtn").addEventListener("click", () => setScreen("start"));
-  qs("#toDressupBtn").addEventListener("click", () => setScreen("dressup"));
-  qs("#finishBtn").addEventListener("click", () => setScreen("finished"));
+  qs("#toDressupBtn").addEventListener("click", () => {
+    setScreen("dressup");
+    renderPreview(); // renderPreview will auto-set dressup zoom to 1.0
+    playButtonSound(); // Play sound on button press
+  });
+  qs("#finishBtn").addEventListener("click", () => {
+    setScreen("finished");
+    playButtonSound(); // Play sound on button press
+  });
 
-  qs("#dressupBackBtn").addEventListener("click", () => setScreen("character"));
+  qs("#dressupBackBtn").addEventListener("click", () => {
+    setScreen("character");
+    renderPreview(); // renderPreview will auto-set character zoom to 3.5
+  });
   qs("#backToDressupBtn").addEventListener("click", () => setScreen("dressup"));
   qs("#restartBtn").addEventListener("click", () => {
     qs("#restartModal").style.display = "block";
@@ -541,7 +646,10 @@ function initEvents() {
     setScreen("wardrobe");
     renderWardrobe();
   });
-  qs("#wardrobeBackBtn").addEventListener("click", () => setScreen("dressup"));
+  qs("#wardrobeBackBtn").addEventListener("click", () => {
+    setScreen("dressup");
+    renderPreview(); // renderPreview will auto-set dressup zoom to 1.0
+  });
 
   qs("#characterResetBtn").addEventListener("click", resetCharacter);
   qs("#dressupResetBtn").addEventListener("click", resetOutfit);
@@ -752,27 +860,83 @@ function saveAsPNG() {
 }
 
 async function init() {
-  const res = await fetch("./data/options.json");
-  optionsData = await res.json();
-  optionIndex = buildOptionIndex(optionsData);
-  await preloadHairSvgTemplates();
-
-  // Load wardrobe from localStorage only if not just restarted
-  if (!state.justRestarted) {
-    const savedWardrobe = localStorage.getItem("dressupWardrobe");
-    if (savedWardrobe) {
-      state.wardrobe = JSON.parse(savedWardrobe);
+  try {
+    const res = await fetch("/data/options.json");
+    if (!res.ok) {
+      throw new Error(`Failed to load game data: ${res.status} ${res.statusText}`);
     }
+    optionsData = await res.json();
+    optionIndex = buildOptionIndex(optionsData);
+    await preloadHairSvgTemplates();
+
+    // Load wardrobe from localStorage only if not just restarted
+    if (!state.justRestarted) {
+      const savedWardrobe = localStorage.getItem("dressupWardrobe");
+      if (savedWardrobe) {
+        state.wardrobe = JSON.parse(savedWardrobe);
+      }
+    }
+    state.justRestarted = false; // Reset flag
+
+    applyDefaultsFromOptions();
+    initEvents();
+
+    // Start background music if enabled
+    if (state.settings.music) {
+      setTimeout(() => {
+        const music = qs("#backgroundMusic");
+        if (music) {
+          // Set volume and try to play
+          music.volume = 0.5;
+          music.play().catch(e => console.log("Music play failed:", e));
+          
+          // Fallback: click to start music if autoplay fails
+          music.play().catch(e => console.log("Music autoplay failed:", e));
+        }
+      }, 1000); // Longer delay to ensure everything is loaded
+      
+      // Also try to start music on first user interaction
+      const startMusicOnInteraction = () => {
+        const music = qs("#backgroundMusic");
+        if (music && music.paused) {
+          music.play().catch(e => console.log("Music play failed:", e));
+        }
+      };
+      
+      // Add click listener to start music on first interaction
+      document.addEventListener('click', startMusicOnInteraction, { once: true });
+    }
+
+    renderScreens();
+    renderCharacterControls();
+    renderDressupControls();
+    renderPreview();
+  } catch (error) {
+    console.error("Error initializing game:", error);
+    
+    // Show error message to user
+    const errorMsg = document.createElement("div");
+    errorMsg.textContent = "Failed to load game data. Please refresh the page.";
+    errorMsg.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ff4444;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      z-index: 10000;
+      text-align: center;
+    `;
+    document.body.appendChild(errorMsg);
+    
+    setTimeout(() => {
+      if (document.body.contains(errorMsg)) {
+        document.body.removeChild(errorMsg);
+      }
+    }, 5000);
   }
-  state.justRestarted = false; // Reset flag
-
-  applyDefaultsFromOptions();
-  initEvents();
-
-  renderScreens();
-  renderCharacterControls();
-  renderDressupControls();
-  renderPreview();
 }
 
 init().catch((err) => {
