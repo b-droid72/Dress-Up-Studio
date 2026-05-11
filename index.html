@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <!-- Background music -->
+    <!-- Audio elements for sound effects and background music -->
+    <!-- Background music - loops continuously when enabled -->
     <audio id="backgroundMusic" loop>
-      <source src="./assets/audio/style savvy.mp3" type="audio/mpeg">
+      <source src="./assets/audio/Style Savvy Apartment Theme.mp3" type="audio/mpeg">
     </audio>
     
-    <!-- Button sound effects -->
+    <!-- Button click sound effect - plays when user interacts with buttons -->
     <audio id="buttonSound" preload="auto">
       <source src="./assets/audio/Button Click - Sound Effect.mp3" type="audio/mpeg">
     </audio>
     
+    <!-- Main application container -->
     <main class="app" id="appRoot">
+      <!-- Top navigation bar with branding and home button -->
       <header class="topbar">
         <div class="brand">
           <div class="brandMark" aria-hidden="true"></div>
@@ -32,6 +35,7 @@
         </div>
       </header>
 
+      <!-- START SCREEN: Welcome screen with main navigation -->
       <section class="screen" data-screen="start">
         <div class="card hero">
           <h1>Welcome</h1>
@@ -45,6 +49,7 @@
         </div>
       </section>
 
+      <!-- SETTINGS SCREEN: Audio preferences and game options -->
       <section class="screen hidden" data-screen="settings">
         <div class="card">
           <div class="row">
@@ -52,6 +57,7 @@
             <button class="btn ghost" id="settingsBackBtn" type="button">Back</button>
           </div>
 
+          <!-- Audio settings grid -->
           <div class="grid2">
             <div class="setting">
               <div class="settingTitle">Music</div>
@@ -69,8 +75,10 @@
         </div>
       </section>
 
+      <!-- CHARACTER CUSTOMIZATION SCREEN: Facial features and colors -->
       <section class="screen hidden" data-screen="character">
         <div class="layout">
+          <!-- Left panel: Character preview -->
           <div class="previewPanel card">
             <div class="row">
               <h2>Character</h2>

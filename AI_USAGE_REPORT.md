@@ -4,7 +4,7 @@
 
 The project follows a simple web application structure with separate files for different purposes:
 
-- **index.html**: The main HTML file defines the page structure. It contains different "screens" (e.g. start, settings, character customization, dress-up, wardrobe, finished) that show or hide based on what the user is doing. It also includes audio elements for button sounds.
+- **index.html**: The main HTML file defines the page structure. It contains different "screens" (e.g. start, settings, character customization, dress-up, wardrobe, finished) that show or hide based on what the user is doing. It also includes audio elements for background music andbutton sounds.
 
 - **app.js**: The JavaScript file handles the game logic. It manages the current state (which screen is showing, what character options are selected, what clothes are chosen), responds to button clicks, updates the display, and handles saving/loading outfits to the browser's local storage.
 
@@ -31,7 +31,7 @@ The Dress-Up Studio is a web-based character customization game with the followi
 - In character customization, users select options from different categories (skin tone, eyes, mouth, hair) using clickable buttons that show preview images.
 - In dress-up mode, users choose clothing items from categories like tops, bottoms, dresses, shoes, and accessories.
 - Users can save their completed outfits with custom names and view them later in the wardrobe.
-- Settings allow users to toggle sound effects on/off.
+- Settings allow users to toggle sound on/off.
 
 **Rendering and Display Logic:**
 - The game uses HTML elements (divs) as layers for each body part and clothing item.

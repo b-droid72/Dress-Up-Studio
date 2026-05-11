@@ -1,36 +1,41 @@
+/* Import Google Fonts for typography */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Fredoka:wght@400;600&display=swap');
 
+/* CSS Custom Properties (Variables) for consistent theming */
 :root {
-  --bg: #e6f3ff; /* Baby blue background */
-  --panel: rgba(255, 255, 255, 0.88);
-  --panel2: rgba(255, 255, 255, 0.7);
-  --text: #0c2130;
-  --muted: rgba(12, 33, 48, 0.65);
-  --border: rgba(12, 33, 48, 0.12);
-  --shadow: none;
-  --primary: #4fb0ff;
-  --primary2: #2a90ff;
-  --focus: rgba(42, 144, 255, 0.35);
-  --radius: 18px;
-  --radius2: 14px;
-  --gap: 16px;
-  --max: 1120px;
-  --preview: 400px;
-  --selected-shadow: rgba(79, 176, 255, 0.18);
-  --selected-border: rgba(42, 144, 255, 0.35);
+  --bg: #e6f3ff; /* Baby blue background for playful feel */
+  --panel: rgba(255, 255, 255, 0.88); /* Semi-transparent white panels */
+  --panel2: rgba(255, 255, 255, 0.7); /* Lighter panel variant */
+  --text: #0c2130; /* Dark blue text for good contrast */
+  --muted: rgba(12, 33, 48, 0.65); /* Muted text color */
+  --border: rgba(12, 33, 48, 0.12); /* Subtle border color */
+  --shadow: none; /* No shadows for clean look */
+  --primary: #4fb0ff; /* Bright blue for primary actions */
+  --primary2: #2a90ff; /* Darker blue for hover states */
+  --focus: rgba(42, 144, 255, 0.35); /* Focus indicator color */
+  --radius: 18px; /* Main border radius for cards */
+  --radius2: 14px; /* Smaller border radius for buttons */
+  --gap: 16px; /* Standard spacing unit */
+  --max: 1120px; /* Maximum content width */
+  --preview: 400px; /* Character preview panel width */
+  --selected-shadow: rgba(79, 176, 255, 0.18); /* Shadow for selected items */
+  --selected-border: rgba(42, 144, 255, 0.35); /* Border for selected items */
 }
 
+/* Global reset and base styles */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Include padding and border in element dimensions */
 }
 
+/* Full height setup for body and html */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+/* Body typography and background */
 body {
   margin: 0;
   font-family: 'Quicksand', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
@@ -40,14 +45,13 @@ body {
   position: relative;
 }
 
+/* Main application container */
 .app {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 18px 16px 24px;
-  min-height: 100%;
-  /* display: flex; */
-  /* flex-direction: column; */
-  gap: 16px;
+  max-width: var(--max); /* Limit content width on large screens */
+  margin: 0 auto; /* Center content horizontally */
+  padding: 18px 16px 24px; /* Consistent padding around content */
+  min-height: 100%; /* Ensure full height layout */
+  gap: 16px; /* Spacing between child elements */
 }
 
 .topbar {
@@ -324,7 +328,8 @@ p {
 }
 
 .optionBtn.active {
-  border-color: rgba(42, 144, 255, 0.45);
+  border-color: var(--selected-border);
+  box-shadow: var(--selected-shadow);
   }
 
 .swatch {

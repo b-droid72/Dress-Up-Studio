@@ -84,9 +84,9 @@ python --version
 - **Audio Settings**:
   - Music toggle (off by default)
   - Sound effects toggle (off by default)
-  - Sound effects only play when enabled
+  - Sound effects and background music only play when enabled
 
   ## Reflection
 
--  I had an interest in web development along with game development, so I wanted to learn more about HTML, CSS, and JavaScript and how exactly they work together. First I did research online and found a [tutorial](https://stashable.wordpress.com/2018/12/30/make-a-dress-up-game-using-javascript-html-and-css/) that showed me how to build a basic dress-up game with javascript html and css. I attempted to follow the tutorial with the asset packs I chose, but it was a bit difficult. That was a rough-rough draft. Then I created a plan with an AI agent and asked it to revise my draft and expand it to include specific features as desired. Initially there were quite a lot of bugs due to the complexity of the code and the way it was structured, but I was able to fix them through trial and error and by using the AI agent to help me debug the code. Finally I had a product that I was satisfied with and that met all of my requirements.
+-  I had an interest in web development along with game development, so I wanted to learn more about HTML, CSS, and JavaScript and how exactly they work together. First I did research online and found a [tutorial](https://stashable.wordpress.com/2018/12/30/make-a-dress-up-game-using-javascript-html-and-css/) that showed me how to build a basic dress-up game with javascript html and css. I attempted to follow the tutorial with the asset packs I chose, but it was a bit difficult. That was a rough-rough draft. Then I created a plan with an AI agent and asked it to revise my draft and expand it to include specific features as desired. Initially there were quite a lot of bugs due to the complexity of the code and the way it was structured, but I was able to fix them through trial and error and by using the AI agent to help me debug the code. Finally, I had a product that I was satisfied!
 

@@ -1,4 +1,8 @@
+// Define all available game screens in order of navigation
 const SCREENS = ["start", "settings", "character", "dressup", "wardrobe", "finished"];
+
+// Define the order in which character features should be layered
+// Items at the bottom appear behind items at the top
 const CHARACTER_LAYER_ORDER = [
   "faceDecor",
   "eyeColor",
@@ -9,8 +13,11 @@ const CHARACTER_LAYER_ORDER = [
   "hair",
   "bangs"
 ];
+
+// Define the order in which clothing items should be layered
 const DRESSUP_LAYER_ORDER = ["underwear", "top", "bottom", "dress", "shoes", "jacket", "accessory"];
 
+// Base layer definitions for the character body
 const LAYERS = {
   base: {
     body: { id: "body", src: "./assets/base/body.svg" }
@@ -18,14 +25,18 @@ const LAYERS = {
 };
 
 /**
- * App state uses option IDs. For image-based choices, we also store resolved src paths.
+ * Global application state - stores all current game data
+ * Uses option IDs for selections. For image-based choices, we also store resolved src paths.
  */
 const state = {
+  // Current screen being displayed
   screen: "start",
+  // User settings for audio (both start disabled)
   settings: {
     music: false,
     sound: false
   },
+  // Character customization selections with default values
   character: {
     skinTone: "tone_1",
     eyeColor: "pupils1a",
@@ -34,68 +45,108 @@ const state = {
     eyelashes: "lashes1",
     faceDecor: "none"
   },
+  // Current outfit selections (empty initially)
   outfit: {},
+  // Array of saved outfits from localStorage
   wardrobe: [],
+  // UI state for which tabs are active
   ui: {
     characterTab: "skinTone",
     dressupTab: "top"
   },
+  // Flag to track if game just restarted
   justRestarted: false,
+  // Zoom levels for character preview
   zoom: {
     character: 1.0,
     dressup: 1.0
   }
 };
 
-let optionsData = null;
-let optionIndex = null;
-const hairSvgTemplates = new Map();
+// Global variables for game data
+let optionsData = null;        // Loaded from options.json - contains all customization options
+let optionIndex = null;        // Indexed version of optionsData for faster lookups
+const hairSvgTemplates = new Map(); // Cache for processed SVG hair templates
 
+/**
+ * Sorts tabs according to a preferred layer order
+ * @param {Array} tabs - Array of tab objects with id property
+ * @param {Array} preferredOrder - Array of IDs in desired order
+ * @returns {Array} - Sorted array of tabs
+ */
 function sortTabsByLayerOrder(tabs, preferredOrder) {
+  // Create a map of item ID to its rank in the preferred order
   const rank = new Map(preferredOrder.map((id, idx) => [id, idx]));
   return [...tabs].sort((a, b) => {
+    // Get rank for each item, or use max value if not in preferred order
     const aRank = rank.has(a.id) ? rank.get(a.id) : Number.MAX_SAFE_INTEGER;
     const bRank = rank.has(b.id) ? rank.get(b.id) : Number.MAX_SAFE_INTEGER;
     return aRank - bRank;
   });
 }
 
+// Utility functions for DOM queries
 function qs(sel, root = document) {
+  // Query selector - returns first matching element
   return root.querySelector(sel);
 }
 
 function qsa(sel, root = document) {
+  // Query selector all - returns array of all matching elements
   return Array.from(root.querySelectorAll(sel));
 }
 
+/**
+ * Validates that a screen name exists in our SCREENS array
+ * @param {string} screen - Screen name to validate
+ * @returns {string} - Valid screen name or "start" as fallback
+ */
 function clampScreen(screen) {
   return SCREENS.includes(screen) ? screen : "start";
 }
 
+/**
+ * Changes the current screen and updates the display
+ * @param {string} next - Name of screen to switch to
+ */
 function setScreen(next) {
   state.screen = clampScreen(next);
   renderScreens();
 }
 
+/**
+ * Updates the UI to show/hide screens based on current state
+ * Shows only the current screen, hides all others
+ */
 function renderScreens() {
   qsa(".screen").forEach((el) => {
     const name = el.getAttribute("data-screen");
+    // Show current screen, hide others
     el.classList.toggle("hidden", name !== state.screen);
   });
+  // Disable home button when already on start screen
   qs("#homeBtn").disabled = state.screen === "start";
 }
 
+/**
+ * Builds an indexed lookup table for faster option access
+ * Converts flat arrays into nested objects for O(1) lookups
+ * @param {Object} data - Options data loaded from JSON
+ * @returns {Object} - Indexed structure: idx.character[tabId][optionId]
+ */
 function buildOptionIndex(data) {
   const idx = {
     character: {},
     dressup: {}
   };
 
+  // Index character customization options
   for (const tab of data.character.tabs) {
     idx.character[tab.id] = {};
     for (const opt of tab.options) idx.character[tab.id][opt.id] = opt;
   }
 
+  // Index dress-up options
   for (const tab of data.dressup.tabs) {
     idx.dressup[tab.id] = {};
     for (const opt of tab.options) idx.dressup[tab.id][opt.id] = opt;
@@ -104,56 +155,95 @@ function buildOptionIndex(data) {
   return idx;
 }
 
+/**
+ * Gets the source URL for a character layer option
+ * @param {string} key - Character feature key (e.g., 'skinTone', 'eyeColor')
+ * @returns {string|null} - Image source URL or null if not found
+ */
 function resolveCharacterLayerSrc(key) {
   const valueId = state.character[key];
   const opt = optionIndex?.character?.[key]?.[valueId];
   return opt?.src ?? null;
 }
 
+/**
+ * Gets all source URLs for a character layer (handles multi-layer options)
+ * @param {string} key - Character feature key
+ * @returns {Array} - Array of image source URLs
+ */
 function resolveCharacterLayerSrcs(key) {
   const valueId = state.character[key];
   const opt = optionIndex?.character?.[key]?.[valueId];
   if (!opt) return [];
+  // Handle options with multiple layers (srcLayers) or single layer (src)
   if (Array.isArray(opt.srcLayers)) return opt.srcLayers.filter(Boolean);
   return opt.src ? [opt.src] : [];
 }
 
+/**
+ * Gets all source URLs for an outfit layer (handles multi-layer options)
+ * @param {string} key - Outfit category key (e.g., 'top', 'bottom')
+ * @returns {Array} - Array of image source URLs
+ */
 function resolveOutfitLayerSrcs(key) {
   const valueId = state.outfit[key];
   const opt = optionIndex?.dressup?.[key]?.[valueId];
   if (!opt) return [];
+  // Handle options with multiple layers (srcLayers) or single layer (src)
   if (Array.isArray(opt.srcLayers)) return opt.srcLayers.filter(Boolean);
   return opt.src ? [opt.src] : [];
 }
 
+/**
+ * Applies a color tint to an image element using CSS filter
+ * Used for coloring SVG elements like hair
+ * @param {HTMLElement} imgEl - Image element to tint
+ * @param {string} tintColor - Hex color code for tint (or null to remove)
+ */
 function applyColorTint(imgEl, tintColor) {
   if (!tintColor) {
+    // Remove tint if no color provided
     imgEl.style.filter = "";
     return;
   }
-  // Apply color tinting to SVG elements
+  // Apply color tinting to SVG elements using drop-shadow trick
   imgEl.style.filter = `drop-shadow(0 0 0 ${tintColor})`;
 }
 
+/**
+ * Resolves the body image source based on skin tone and texture
+ * Handles special skin textures like snake and bubble patterns
+ * @returns {string|null} - Body image source URL
+ */
 function resolveBodySrc() {
   const skinToneOpt = optionIndex?.character?.skinTone?.[state.character.skinTone];
   const baseSrc = skinToneOpt?.src ?? LAYERS.base.body.src;
   if (!baseSrc) return null;
+  
   const textureId = state.character.skinTexture ?? "base";
   if (textureId === "base") return baseSrc;
+  
+  // Extract skin tone suffix from filename (e.g., "light", "medium", "dark")
   const match = baseSrc.match(/base_body_([a-z]+)\.png$/i);
   if (!match) return baseSrc;
   const suffix = match[1];
+  
+  // Apply texture overlays based on texture type
   if (textureId === "snake") return `./assets/bodypack/snake/snake_body_${suffix}.png`;
   if (textureId === "bubbles") return `./assets/bodypack/bubbles/bubbles_body_${suffix}.png`;
   return baseSrc;
 }
 
+/**
+ * Preloads all hair SVG templates for dynamic coloring
+ * Loads SVG content into memory so we can modify fill colors
+ */
 async function preloadHairSvgTemplates() {
   hairSvgTemplates.clear();
   const hairTab = optionsData?.character?.tabs?.find((tab) => tab.id === "hair");
   if (!hairTab) return;
 
+  // Load all SVG hair options into memory
   const loads = hairTab.options
     .filter((opt) => typeof opt.src === "string" && opt.src.toLowerCase().endsWith(".svg"))
     .map(async (opt) => {
@@ -161,6 +251,7 @@ async function preloadHairSvgTemplates() {
         const res = await fetch(opt.src);
         if (!res.ok) return;
         const svgText = await res.text();
+        // Store SVG text for later manipulation
         hairSvgTemplates.set(opt.id, svgText);
       } catch (_err) {
         // Keep rendering resilient; missing templates fall back to regular <img>.
@@ -170,16 +261,27 @@ async function preloadHairSvgTemplates() {
   await Promise.all(loads);
 }
 
+/**
+ * Creates a colored SVG hair element from a template
+ * Modifies the SVG fill colors to match the selected hair color
+ * @param {string} hairId - Hair style ID
+ * @param {string} hairColor - Hex color code for hair
+ * @returns {SVGElement|null} - Colored SVG element or null if template not found
+ */
 function makeHairSvgLayer(hairId, hairColor) {
   const template = hairSvgTemplates.get(hairId);
   if (!template) return null;
 
+  // Parse SVG template into DOM element
   const parser = new DOMParser();
   const doc = parser.parseFromString(template, "image/svg+xml");
   const svg = doc.documentElement;
   if (!svg || svg.nodeName.toLowerCase() !== "svg") return null;
 
+  // Validate and set hair color (default to brown if invalid)
   const tone = hairColor && /^#[0-9a-fA-F]{6}$/.test(hairColor) ? hairColor : "#5b3a22";
+  
+  // Replace default brown color (#5b3a22) with selected hair color
   svg.querySelectorAll("[fill]").forEach((node) => {
     const current = node.getAttribute("fill");
     if (!current || current === "none" || current === "transparent") return;
@@ -188,11 +290,16 @@ function makeHairSvgLayer(hairId, hairColor) {
     }
   });
 
+  // Add CSS classes and accessibility attributes
   svg.classList.add("layerSvg", "layer--hair");
   svg.setAttribute("aria-hidden", "true");
   return svg;
 }
 
+/**
+ * Clears and prepares a layer stack container for rendering
+ * @param {HTMLElement} rootEl - Container element to clear
+ */
 function renderLayerStack(rootEl) {
   rootEl.innerHTML = "";
 
@@ -451,9 +558,17 @@ function renderCharacterControls() {
 }
 
 function updateTopBarShadow() {
-  const activeTab = optionsData.character.tabs.find((t) => t.id === state.ui.characterTab);
+  let activeTab;
+  
+  // Check which screen we're on and get the appropriate active tab
+  if (state.screen === "character") {
+    activeTab = optionsData.character.tabs.find((t) => t.id === state.ui.characterTab);
+  } else if (state.screen === "dressup") {
+    activeTab = optionsData.dressup.tabs.find((t) => t.id === state.ui.dressupTab);
+  }
+  
   if (activeTab && activeTab.label) {
-    // Create shadow color based on tab label
+    // Create shadow color based on tab label (currently same blue for all tabs)
     const shadowColor = `rgba(${[79, 176, 255, 0.18].join(',')})`;
     const borderColor = `rgba(${[42, 144, 255, 0.35].join(',')})`;
     
@@ -471,6 +586,7 @@ function renderDressupControls() {
   renderTabs(qs("#dressupCategoryTabs"), optionsData.dressup.tabs, state.ui.dressupTab, (id) => {
     state.ui.dressupTab = id;
     renderDressupTabContent();
+    updateTopBarShadow(); // Update shadow based on selection
   });
   renderDressupTabContent();
 }

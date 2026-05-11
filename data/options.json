@@ -243,48 +243,48 @@
                     },
                     {
                         "id": "brow2",
-                        "label": "10",
-                        "src": "./assets/features/eyebrows/10.png"
-                    },
-                    {
-                        "id": "brow3",
                         "label": "2",
                         "src": "./assets/features/eyebrows/2.png"
                     },
                     {
-                        "id": "brow4",
+                        "id": "brow3",
                         "label": "3",
                         "src": "./assets/features/eyebrows/3.png"
                     },
                     {
-                        "id": "brow5",
+                        "id": "brow4",
                         "label": "4",
                         "src": "./assets/features/eyebrows/4.png"
                     },
                     {
-                        "id": "brow6",
+                        "id": "brow5",
                         "label": "5",
                         "src": "./assets/features/eyebrows/5.png"
                     },
                     {
-                        "id": "brow7",
+                        "id": "brow6",
                         "label": "6",
                         "src": "./assets/features/eyebrows/6.png"
                     },
                     {
-                        "id": "brow8",
+                        "id": "brow7",
                         "label": "7",
                         "src": "./assets/features/eyebrows/7.png"
                     },
                     {
-                        "id": "brow9",
+                        "id": "brow8",
                         "label": "8",
                         "src": "./assets/features/eyebrows/8.png"
                     },
                     {
-                        "id": "brow10",
+                        "id": "brow9",
                         "label": "9",
                         "src": "./assets/features/eyebrows/9.png"
+                    },
+                    {
+                        "id": "brow10",
+                        "label": "10",
+                        "src": "./assets/features/eyebrows/10.png"
                     }
                 ]
             },
