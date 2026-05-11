@@ -413,7 +413,7 @@ p {
   background: white;
   padding: 20px;
   border-radius: 8px;
-   0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   z-index: 99999;
   display: none;
   width: auto;
@@ -449,7 +449,7 @@ p {
   border-radius: 12px;
   width: 350px;
   text-align: center;
-   0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   z-index: 10000;
   display: none;
 }
@@ -464,7 +464,7 @@ p {
   border-radius: 12px;
   width: 350px;
   text-align: center;
-   0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   z-index: 10000;
   animation: modalBoxFadeIn 0.3s ease-out;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -474,7 +474,7 @@ p {
   background: white;
   padding: 20px;
   border-radius: 8px;
-   0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   z-index: 100000;
   margin: 0;
 }

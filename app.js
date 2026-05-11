@@ -24,7 +24,7 @@ const state = {
   screen: "start",
   settings: {
     music: false,
-    sound: true
+    sound: false
   },
   character: {
     skinTone: "tone_1",

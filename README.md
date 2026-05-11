@@ -1,7 +1,5 @@
 # Dress-Up Studio (Python Flask + Vanilla HTML/CSS/JS)
 
-This is a web-based dress-up game built with vanilla HTML, CSS, and JavaScript. It includes character customization, outfit selection, and a wardrobe save system.
-
 ## How to run
 
 ### Prerequisites
@@ -60,16 +58,15 @@ python --version
 
 - **Start Screen**: Welcome screen with Play and Settings buttons
 - **Character Customization**: 
-  - Skin tone selection (17 options)
+  - Skin tone selection
   - Eye color selection
   - Mouth selection
-  - Hairstyle selection (numbered 1-10)
-  - Hair color selection (10 color options)
+  - Hairstyle selection
   - Eyelashes, face decorations
   - Ears automatically rendered with skin tone matching (no user category)
 - **Dress-Up Mode**: 
   - Multiple clothing categories (tops, bottoms, dresses, shoes, accessories)
-  - Feminine casual outfits with 10+ options per category
+  - Feminine casual outfits with multiple options per category
   - Real-time preview with layered rendering
 - **Wardrobe System**: 
   - Save outfits with custom names
@@ -84,86 +81,12 @@ python --version
   - Character naming modal
   - Responsive design with modern styling
   - Smooth animations and transitions
+- **Audio Settings**:
+  - Music toggle (off by default)
+  - Sound effects toggle (off by default)
+  - Sound effects only play when enabled
 
-## Game Structure
+  ## Reflection
 
-### Character Customization
-- **Separate Categories**: Hair styles (numbered) and hair colors (separate selection)
-- **Default States**: All categories default to "none" except skin tone and basic features
-- **Automatic Features**: Ears #1 automatically rendered with skin tone matching
+-  I had an interest in web development along with game development, so I wanted to learn more about HTML, CSS, and JavaScript and how exactly they work together. First I did research online and found a [tutorial](https://stashable.wordpress.com/2018/12/30/make-a-dress-up-game-using-javascript-html-and-css/) that showed me how to build a basic dress-up game with javascript html and css. I attempted to follow the tutorial with the asset packs I chose, but it was a bit difficult. That was a rough-rough draft. Then I created a plan with an AI agent and asked it to revise my draft and expand it to include specific features as desired. Initially there were quite a lot of bugs due to the complexity of the code and the way it was structured, but I was able to fix them through trial and error and by using the AI agent to help me debug the code. Finally I had a product that I was satisfied with and that met all of my requirements.
 
-### Wardrobe System
-- **Save**: Name and save current outfit with thumbnail
-- **Storage**: Uses localStorage for persistence
-- **Load**: Click any saved outfit to restore it
-- **Clear**: All outfits cleared when restarting game
-
-### Technical Details
-
-#### File Structure
-```
-dress-up-game/
-├── index.html          # Main application file
-├── styles.css          # Styling and animations
-├── app.js             # Game logic and state management
-├── app.py              # Flask Python server
-├── data/
-│   └── options.json    # Configuration for customization options
-└── assets/             # All game assets (images, SVGs)
-    ├── features/        # Character features (eyes, mouth, etc.)
-    ├── bodypack/        # Body bases and underwear
-    ├── clothes/          # Clothing items
-    └── feminine casual outfits/  # Complete outfit sets
-```
-
-#### Key Components
-- **State Management**: Centralized state object for character, outfit, and UI
-- **Rendering System**: Dynamic image layering with proper z-index management
-- **Modal System**: Center-screen pop-ups with backdrop and content
-- **Asset Loading**: Preloading and caching for performance
-
-## Adding Custom Content
-
-### Adding New Clothing Items
-1. Place images in appropriate category folders under `assets/`
-2. Update `data/options.json` to include new options:
-```json
-{
-  "dressup": {
-    "tabs": [
-      {
-        "id": "your-category",
-        "label": "Your Category",
-        "type": "image",
-        "default": "none",
-        "options": [
-          {
-            "id": "item1",
-            "label": "1",
-            "src": "./assets/your-category/item1.png"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-### Adding New Character Features
-1. Add feature images to `assets/features/`
-2. Update character options in `data/options.json`
-3. Ensure proper layering order in `app.js`
-
-## Development
-
-### Customization Tips
-- **Images**: Use transparent PNGs for clothing items
-- **Sizing**: Ensure all character parts align properly
-- **Performance**: Preload frequently used assets
-- **Compatibility**: Test across different browsers
-
-### Troubleshooting
-- **Assets not loading**: Check file paths in `options.json`
-- **Modals not working**: Ensure no CSS conflicts with positioning
-- **Wardrobe not saving**: Check localStorage availability
-- **Character not rendering**: Verify layer order in `CHARACTER_LAYER_ORDER`
