@@ -1,6 +1,6 @@
-# Dress-Up Studio (Python Flask + Vanilla HTML/CSS/JS)
+# Dress-Up Studio
 
-A web-based dress-up game where players customize characters and create stylish outfits. Built with vanilla HTML, CSS, and JavaScript that can be run using a Python server or directly in a web browser.
+A web-based dress-up game where players customize characters and create stylish outfits. Built with vanilla HTML, CSS, and JavaScript that can be run using a Python server with flask or directly in a web browser.
 
 ## How to Play
 
