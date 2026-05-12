@@ -44,29 +44,23 @@ A web-based dress-up game where players customize characters and create stylish 
   - Eye color selection
   - Mouth selection
   - Hairstyle selection
-  - Eyelashes, face decorations
-  - Ears automatically rendered with skin tone matching (no user category)
+  - Eyelashes selection
+  - Face decorations
 - **Dress-Up Mode**: 
   - Multiple clothing categories (tops, bottoms, dresses, shoes, accessories)
-  - Feminine casual outfits with multiple options per category
-  - Real-time preview with layered rendering
+  - Layered rendering
 - **Wardrobe System**: 
-  - Save outfits with custom names
+  - Save outfits and custom names in storage
   - View saved outfits in a grid layout
   - Load saved outfits back to character
-  - Persistent storage using localStorage
-- **Export Features**:
-  - Save character as PNG with transparent background
-  - High-resolution export with proper layering
-- **UI Features**:
+ - **UI Features**:
   - Restart confirmation modal
   - Character naming modal
   - Responsive design with modern styling
-  - Smooth animations and transitions
+  - Save character as PNG with transparent background
 - **Audio Settings**:
-  - Music toggle (off by default)
-  - Sound effects toggle (off by default)
-  - Sound effects and background music only play when enabled
+  - Music toggle 
+  - Sound effects toggle
 
   ## Reflection
 
