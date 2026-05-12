@@ -227,9 +227,12 @@ p {
   transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
 }
 
-.tab.active {
-  background: var(--primary);
-  border-color: var(--primary2);
+.tab.active,
+.categoryTabs .tab.active {
+  background: var(--primary) !important;
+  border: 2px solid var(--selected-border) !important;
+  box-shadow: var(--selected-shadow) !important;
+  transform: scale(1.05);
 }
 
 .categoryContent {

@@ -96,7 +96,7 @@
             },
             {
                 "id": "eyeColor",
-                "label": "Eye Color",
+                "label": "Eyes",
                 "type": "image",
                 "default": "pupils1a",
                 "options": [
@@ -206,22 +206,12 @@
                     {
                         "id": "lashes4",
                         "label": "4",
-                        "src": "./assets/features/eyelashes/4.png"
+                        "src": "./assets/features/eyelashes/5.png"
                     },
                     {
                         "id": "lashes5",
                         "label": "5",
-                        "src": "./assets/features/eyelashes/5.png"
-                    },
-                    {
-                        "id": "lashes6",
-                        "label": "6",
                         "src": "./assets/features/eyelashes/6.png"
-                    },
-                    {
-                        "id": "lashes7",
-                        "label": "7",
-                        "src": "./assets/features/eyelashes/7.png"
                     }
                 ]
             },

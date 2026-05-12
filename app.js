@@ -126,6 +126,16 @@ function renderScreens() {
   });
   // Disable home button when already on start screen
   qs("#homeBtn").disabled = state.screen === "start";
+  
+  // Render controls for specific screens
+  if (state.screen === "character") {
+    renderCharacterControls();
+  } else if (state.screen === "dressup") {
+    renderDressupControls();
+  }
+  
+  // Update tab indicator when screen changes
+  updateTopBarShadow();
 }
 
 /**
@@ -553,8 +563,25 @@ function renderCharacterControls() {
     state.ui.characterTab = id;
     renderCharacterTabContent();
     updateTopBarShadow(); // Update shadow based on selection
+    // Update active class on tabs without full re-render
+    updateTabActiveState("#characterCategoryTabs", id);
   });
   renderCharacterTabContent();
+}
+
+function updateTabActiveState(containerId, activeId) {
+  const container = qs(containerId);
+  const tabs = container.querySelectorAll(".tab");
+  const isCharacter = containerId === "#characterCategoryTabs";
+  const tabsData = isCharacter ? optionsData.character.tabs : optionsData.dressup.tabs;
+  
+  tabs.forEach(tab => {
+    tab.classList.remove("active");
+    const activeTab = tabsData.find(t => t.id === activeId);
+    if (activeTab && tab.textContent.includes(activeTab.label)) {
+      tab.classList.add("active");
+    }
+  });
 }
 
 function updateTopBarShadow() {
@@ -587,6 +614,8 @@ function renderDressupControls() {
     state.ui.dressupTab = id;
     renderDressupTabContent();
     updateTopBarShadow(); // Update shadow based on selection
+    // Update active class on tabs without full re-render
+    updateTabActiveState("#dressupCategoryTabs", id);
   });
   renderDressupTabContent();
 }
